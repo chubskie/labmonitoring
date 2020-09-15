@@ -3,9 +3,9 @@ Laboratory Monitoring System is a project made to monitor the vacancy and schedu
 
 ## Collaboratos
 - [Mack Perry Co](https://github.com/McPerry11)
-- [Jobert Fernandez]()
-- [Marjon Ramos]()
-- [Aldrin Palencia]()
+- [Jobert Fernandez](https://github.com/MeanFinn)
+- [Marjon Ramos](https://github.com/reiisrei)
+- [Aldrin Palencia](https://github.com/nird931)
 
 Copyright © 2020 UE CCSS R&D
 
