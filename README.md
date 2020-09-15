@@ -1,7 +1,7 @@
 # Laboratory Monitoring System
 Laboratory Monitoring System is a project made to monitor the vacancy and schedules of the laboratories in the UE CCSS building.
 
-## Collaboratos
+## Collaborators
 - [Mack Perry Co](https://github.com/McPerry11)
 - [Jobert Fernandez](https://github.com/MeanFinn)
 - [Marjon Ramos](https://github.com/reiisrei)
