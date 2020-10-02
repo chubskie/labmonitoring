@@ -1,0 +1,14 @@
+html {
+	max-width: 100vh;	
+	max-height: 100vh;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+}
+
+.icon:not(:only-child) {
+	margin-right: 5px;
+}
