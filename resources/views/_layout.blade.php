@@ -10,7 +10,9 @@
 </head>
 <body>
 	@include('_sidebar')
-	@yield('body')
+	<div id="body">
+		@yield('body')
+	</div>
 	
 	@include('_scripts')
 	@yield('scripts')
