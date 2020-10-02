@@ -23,7 +23,7 @@
 			</a>
 		</li>
 		<li>
-			<a>
+			<a href="{{URL::to('/accounts')}}">
 				<span class="icon">
 					<i class="fas fa-users"></i>
 				</span>

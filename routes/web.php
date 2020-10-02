@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'IndexController@dashboard');
+Route::get('/accounts', 'AccountsController@getAccounts');
