@@ -10,27 +10,32 @@
     </header>
     <div class="card-content">
         <div class="content">
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control">
-                    <input class="input" type="text" value="{{ $user->email }}">
-                </div>
-            </div>
+            <form method="POST" action="{{ route('change.password') }}">
+                @csrf 
             <div class="field">
                 <label class="label">Current Password</label>
                 <div class="control">
-                    <input class="input" type="password">
+                    <input class="input" id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
                 </div>
             </div>
             <div class="field">
                 <label class="label">New Password</label>
                 <div class="control">
-                    <input class="input" type="password">
+                   
+                    <input class="input" id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">New Confirm Password</label>
+                <div class="control">
+                    
+                    <input class="input" id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
                 </div>
             </div>
             <div class="control">
-                <button class="button is-primary">Submit</button>
+                <button type="submit" class="button is-primary">Update password</button>
             </div>
+        </form>
         </div>
     </div>
     
