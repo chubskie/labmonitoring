@@ -1,7 +1,7 @@
 @extends('_layout')
 
 @section('body')
-
+@if (Auth::check())
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
@@ -11,9 +11,9 @@
     <div class="card-content">
         <div class="content">
             <div class="field">
-                <label class="label">Username</label>
+                <label class="label">Email</label>
                 <div class="control">
-                    <input class="input" type="text">
+                    <input class="input" type="text" value="{{ $user->email }}">
                 </div>
             </div>
             <div class="field">
@@ -33,6 +33,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 <br>
 <div class="card">
@@ -74,23 +75,26 @@
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Username</th>
+            <th>Email</th>
             <th>Action</th>
         </tr>
     </thead>
 
     <tbody>
+        @if (count($users) > 0)
+        @foreach ($users as $user)
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
             <td>
                 <button class="button">Edit</button>
             </td>
         </tr>
-
+        @endforeach
+        @endif
     </tbody>
 </table>
-
+@endif
 
 @endsection
