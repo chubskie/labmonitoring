@@ -5,7 +5,7 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
-            Admin Setting
+            Change password
         </p>
     </header>
     <div class="card-content">
@@ -44,27 +44,37 @@
     </header>
     <div class="card-content">
         <div class="content">
+        <form method="POST" action="{{ route('addUser') }}">
+            @csrf
             <div class="field">
-                <label class="label">Username</label>
+                <label class="label">Name</label>
                 <div class="control">
-                    <input class="input" type="text">
+                    <input class="input" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                 </div>
             </div>
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
-                    <input class="input" type="email">
+                    <input class="input" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" type="passowrd">
+                    <input class="input" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                    <input class="input" id="password-confirm" type="password"  name="password_confirmation" required autocomplete="new-password">
+                    
                 </div>
             </div>
             <div class="control">
-                <button class="button is-primary">Submit</button>
+                <button type="submit" class="button is-primary">Submit</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
