@@ -19,3 +19,6 @@ Route::post('/accounts/addUser', 'AccountsController@addUser')->name('addUser');
 Auth::routes();
 Route::post('change-password', 'AccountsController@store')->name('change.password');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/calendar', 'CalendarController@index');

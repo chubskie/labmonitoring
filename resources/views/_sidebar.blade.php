@@ -15,7 +15,7 @@
 			</a>
 		</li>
 		<li>
-			<a>
+			<a href="{{URL::to('/calendar')}}">
 				<span class="icon">
 					<i class="fas fa-clock"></i>
 				</span>
