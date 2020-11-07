@@ -7,7 +7,7 @@
 	</div>
 	<ul class="menu-list">
 		<li>
-			<a>
+			<a href="{{ route('dashboard') }}">
 				<span class="icon">
 					<i class="fas fa-columns"></i>
 				</span>

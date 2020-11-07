@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'IndexController@dashboard');
+Route::get('/', 'IndexController@dashboard')->name('dashboard');
 Route::get('/accounts', 'AccountsController@getAccounts');
 Route::post('/accounts/addUser', 'AccountsController@addUser')->name('addUser');
-Auth::routes();
 Route::post('change-password', 'AccountsController@store')->name('change.password');
-Route::get('/home', 'HomeController@index')->name('home');

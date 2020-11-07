@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
 class AccountsController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    function getAccounts() {
+	public function getAccounts() {
 		$users = DB::table('users')->get();
 		$user = Auth::user();
 		return view('accounts')
@@ -24,10 +20,10 @@ class AccountsController extends Controller
 	public function addUser(Request $request){
 		$this->validate($request, [
 			'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+			'password' => ['required', 'string', 'min:8', 'confirmed'],
 		]);
-  
+
 		// Create New Message
 		$user = new User;
 		$user->name = $request->input('name');
@@ -35,21 +31,21 @@ class AccountsController extends Controller
 		$user->password = Hash::make($request->input('subject'));
 		// Save Message
 		$user->save();
-  
+
 		// Redirect
 		return redirect('/accounts')->with('success', 'Message Sent');
-	  }
+	}
 
-	  public function store(Request $request)
-	  {
-		  $request->validate([
-			  'current_password' => ['required', new MatchOldPassword],
-			  'new_password' => ['required'],
-			  'new_confirm_password' => ['same:new_password'],
-		  ]);
-	 
-		  User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-	 
-		  dd('Password change successfully.');
-	  }
+	public function store(Request $request)
+	{
+		$request->validate([
+			'current_password' => ['required', new MatchOldPassword],
+			'new_password' => ['required'],
+			'new_confirm_password' => ['same:new_password'],
+		]);
+
+		User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+		dd('Password change successfully.');
+	}
 }
