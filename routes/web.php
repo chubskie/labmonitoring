@@ -18,3 +18,6 @@ Route::get('accounts', 'AccountsController@getAccounts');
 Route::post('accounts', 'AccountsController@index');
 Route::post('accounts/addUser', 'AccountsController@addUser')->name('addUser');
 Route::post('change-password', 'AccountsController@store')->name('change.password');
+
+Route::get('freelab', 'IndexController@freelab');
+Route::post('freelab-store', 'IndexController@postfreelab');

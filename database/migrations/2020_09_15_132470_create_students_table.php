@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SchedulesRelation extends Migration
+class CreateStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class SchedulesRelation extends Migration
      */
     public function up()
     {
-        Schema::table('schedules', function($table)
-        {
-            $table->foreign('labID')->references('labID')->on('laboratories')->onDelete('cascade');
-            $table->foreign('studentID')->references('studentID')->on('students')->onDelete('cascade');
+        Schema::create('students', function (Blueprint $table) {
+            $table->id();
+            $table->string('fullName');
+            $table->integer('studentNumber');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class SchedulesRelation extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('students');
     }
 }

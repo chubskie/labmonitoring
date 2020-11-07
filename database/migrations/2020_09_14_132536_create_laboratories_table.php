@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class LogsRelation extends Migration
+class CreateLaboratoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class LogsRelation extends Migration
      */
     public function up()
     {
-        Schema::table('logs', function($table)
-        {
-            $table->foreign('studentID')->references('studentID')->on('students')->onDelete('cascade');
+        Schema::create('laboratories', function (Blueprint $table) {
+            $table->id();
+            $table->string('labName');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class LogsRelation extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('laboratories');
     }
 }

@@ -14,15 +14,14 @@ class CreateSchedulesTable extends Migration
     public function up()
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->increments('scheduleID');
-            $table->dateTime('timeStart');
-            $table->dateTime('timeEnd');
+            $table->id();
+            $table->time('timeStart');
+            $table->time('timeEnd');
             $table->boolean('reccuring');
-            $table->dateTime('reccuringEnd');
+            $table->date('reccuringEnd');
             $table->string('color', 50);
             $table->string('description', 191);
-            $table->integer('labID')->unsigned();
-            $table->integer('studentID')->unsigned();
+            $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

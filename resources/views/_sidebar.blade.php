@@ -23,6 +23,14 @@
 			</a>
 		</li>
 		<li>
+			<a href="{{ URL::to('freelab') }}" id="freelab">
+				<span class="icon">
+					<i class="fas fa-list-alt"></i>
+				</span>
+				<span>Free Lab</span>
+			</a>
+		</li>
+		<li>
 			<a id="accounts" href="{{URL::to('accounts')}}">
 				<span class="icon">
 					<i class="fas fa-users"></i>

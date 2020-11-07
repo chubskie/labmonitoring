@@ -9,7 +9,7 @@ $(function() {
 	}
 
 	function retrieveAccounts() {
-
+		// Continuously retrieve accounts
 	}
 
 	function retrieveAccounts(data) {

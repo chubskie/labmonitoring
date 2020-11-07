@@ -14,9 +14,11 @@ class CreateLogsTable extends Migration
     public function up()
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->increments('logID');
-            $table->integer('studentID')->unsigned();
-            $table->string('description', 191);
+            $table->id();
+            $table->foreignID('userID')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignID('studentID')->constrained('students')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignID('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->string('description');
             $table->timestamps();
         });
     }

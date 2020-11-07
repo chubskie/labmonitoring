@@ -11,22 +11,24 @@
 </head>
 
 <body>
+  @if (Request::is('freelab') || Request::is('login'))
+  @yield('body')
+  @else
   @include('_sidebar')
   <div id="body">
     <div class="columns is-centered">
       <div class="column">
         <section class="section">
           <div class="container">
-
             @yield('body')
-
           </div>
         </section>
       </div>
     </div>
+  </div>
+  @endif
+  @include('_scripts')
+  @yield('scripts')
+</body>
 
-    @include('_scripts')
-    @yield('scripts')
-  </body>
-
-  </html>
+</html>
