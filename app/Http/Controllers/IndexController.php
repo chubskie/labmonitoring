@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-	function dashboard() {
+	public function dashboard() {
 		return view('dashboard');
 	}
 }

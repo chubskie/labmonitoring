@@ -7,7 +7,7 @@
 	</div>
 	<ul class="menu-list">
 		<li>
-			<a>
+			<a id="dashboard" href="{{ route('dashboard') }}">
 				<span class="icon">
 					<i class="fas fa-columns"></i>
 				</span>
@@ -23,7 +23,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{URL::to('/accounts')}}">
+			<a id="accounts" href="{{URL::to('accounts')}}">
 				<span class="icon">
 					<i class="fas fa-users"></i>
 				</span>
@@ -31,7 +31,7 @@
 			</a>
 		</li>
 		<li>
-			<a>
+			<a id="logs">
 				<span class="icon">
 					<i class="fas fa-stream"></i>
 				</span>
