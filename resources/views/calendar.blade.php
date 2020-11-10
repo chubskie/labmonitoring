@@ -1,5 +1,5 @@
 @extends('_layout')
 
 @section('body')
-<h1>Test</h1>
+<div id="app"><schedule></schedule></div>
 @endsection
