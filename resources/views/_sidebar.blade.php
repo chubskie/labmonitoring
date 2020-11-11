@@ -39,7 +39,7 @@
 			</a>
 		</li>
 		<li>
-			<a id="logs">
+			<a href="/logs" id="logs">
 				<span class="icon">
 					<i class="fas fa-stream"></i>
 				</span>
