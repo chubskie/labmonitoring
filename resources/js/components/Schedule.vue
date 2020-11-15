@@ -1,27 +1,257 @@
 <template>
 <div>
-  <div class="box level">
-      <span class="level-left">
-        <div class="select is-rounded is-small level-item">
-            <select v-model="selectedView">
-            <option v-for="(options, index) in viewModeOptions" :value="options.value" :key="index">
-                {{options.title}}
-            </option>
-            </select>
-        </div>
-        <span @click="onClickNavi($event)" class="level-item">
-        <button type="button" class="button is-rounded is-small is-info mr-1" data-action="move-today">Today</button>
-        <button type="button" class="button is-rounded is-small mr-1" data-action="move-prev">Prev</button>
-        <button type="button" class="button is-rounded is-small" data-action="move-next">Next</button>
-        </span>
-        <span class="render-range tag is-medium level-item">{{dateRange}}</span>
-    </span>
+        <div class="box level">
+            <span class="level-left">
+                <div class="select is-rounded is-small level-item">
+                    <select class="has-text-weight-semibold " v-model="selectedView">
+                        <option v-for="(options, index) in viewModeOptions" :value="options.value" :key="index">
+                            {{options.title}}
+                        </option>
+                    </select>
+                </div>
+                <span @click="onClickNavi($event)" class="level-item">
+                    <button type="button" class="button is-rounded has-text-weight-semibold is-small is-info mr-1"
+                        data-action="move-today">Today</button>
+                    <button type="button" class="button is-rounded has-text-weight-semibold is-small mr-1"
+                        data-action="move-prev">Prev</button>
+                    <button type="button" class="button is-rounded has-text-weight-semibold is-small"
+                        data-action="move-next">Next</button>
+                </span>
+                <span class="render-range tag is-medium level-item has-text-weight-semibold">{{dateRange}}</span>
+            </span>
 
-    <span class="level-right">
-      <button type="button" class="button is-rounded is-small is-info is-light level-item">Free Lab Schedule</button>
-      <button type="button" class="button is-rounded is-small is-info is-light level-item">New Schedule</button>
-    </span>
-  </div>
+            <span class="level-right">
+                <button id="freelab" type="button"
+                    class="button is-rounded has-text-weight-semibold is-small is-info is-light level-item button is-link">Free
+                    Lab Schedule</button>
+                <button id="newsched" type="button"
+                    class="button is-rounded has-text-weight-semibold is-small is-info is-light level-item is-link">New
+                    Schedule</button>
+            </span>
+        </div>
+
+        <div id="add-card-freelab" class="card" style="display:none">
+            <header class="card-header">
+                <p class="card-header-title">
+                    Free Lab Form
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <form id="addUser">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Title</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text"
+                                            placeholder="e.g. Prof's Name">
+                                    </div>
+                                    <p class="help is-danger">
+                                        This field is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Description</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <textarea class="textarea" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Category</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <div class="select is-fullwidth">
+                                            <select>
+                                                <option>Category 1</option>
+                                                <option>Category 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Date</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" type="text" placeholder="Start Date">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left ">
+                                        <input class="input" type="text" placeholder="End Date"
+                                            >
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">All day?</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" name="allday">
+                                            Yes
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="allday" checked>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons is-centered">
+                            <button type="submit" class="button is-success">Submit</button>
+                            <button class="button is-danger is-outlined cancel" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="add-card-new-sched" class="card" style="display:none">
+            <header class="card-header">
+                <p class="card-header-title">
+                    New Schedule Form
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <form id="newSchedule">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Title</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text"
+                                            placeholder="e.g. Prof's Name">
+                                    </div>
+                                    <p class="help is-danger">
+                                        This field is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Description</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <textarea class="textarea" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Category</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <div class="select is-fullwidth">
+                                            <select>
+                                                <option>Category 1</option>
+                                                <option>Category 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Date</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" type="text" placeholder="Start Date">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left ">
+                                        <input class="input" type="text" placeholder="End Date"
+                                            >
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">All day?</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" name="allday">
+                                            Yes
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="allday" checked>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buttons is-centered">
+                            <button type="submit" class="button is-success">Submit</button>
+                            <button class="button is-danger is-outlined cancel" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+
   <calendar style="height: 800px"
             ref="tuiCal"
             :useDetailPopup="useDetailPopup"
@@ -30,7 +260,7 @@
             :schedules="scheduleList"
             :theme="theme"
             :template="template"
-            :taskView="true"
+            :taskView="false"
             :scheduleView="true"
             :month="month"
             :week="week"
@@ -42,9 +272,11 @@
             @afterRenderSchedule="onAfterRenderSchedule"
             @clickTimezonesCollapseBtn="onClickTimezonesCollapseBtn"
   />
+
 </div>
 </template>
 <script>
+import axios from 'axios'
 import 'tui-time-picker/dist/tui-time-picker.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-calendar/dist/tui-calendar.css';
@@ -54,7 +286,6 @@ import {Calendar} from './index';
 import myTheme from './myTheme';
 
 const today = new Date();
-
 const getDate = (type, start, value, operator) => {
   start = new Date(start);
   type = type.charAt(0).toUpperCase() + type.slice(1);
@@ -75,6 +306,7 @@ export default {
   },
   data() {
     return {
+      schedules: [],
       viewModeOptions: [
         {
           title: 'Monthly',
@@ -90,69 +322,78 @@ export default {
         }
       ],
       dateRange: '',
-      selectedView: 'month',
-      calendarList: [
-        {
-          id: '0',
-          name: 'Private',
-          bgColor: '#9e5fff',
-          borderColor: '#9e5fff'
-        },
-        {
-          id: '1',
-          name: 'Company',
-          bgColor: '#00a9ff',
-          borderColor: '#00a9ff'
-        }
-      ],
+      selectedView: 'week',
+      // calendarList: [
+      //   {
+      //     id: '0',
+      //     name: 'Private',
+      //     bgColor: '#9e5fff',
+      //     borderColor: '#9e5fff'
+      //   },
+      //   {
+      //     id: '1',
+      //     name: 'Company',
+      //     bgColor: '#00a9ff',
+      //     borderColor: '#00a9ff'
+      //   }
+      // ],
       scheduleList: [
-        {
-          id: '1',
-          calendarId: '0',
-          title: 'Marjon Ramos',
-          category: 'time',
-          dueDateClass: '',
-          start: today.toISOString(),
-          end: getDate('hours', today, 3, '+').toISOString()
-        },
-        {
-          id: '11',
-          calendarId: '0',
-          title: 'gago',
-          category: 'time',
-          dueDateClass: '',
-          start: today.toISOString(),
-          end: getDate('hours', today, 3, '+').toISOString()
-        },
-        {
-          id: '2',
-          calendarId: '1',
-          title: 'Marjon',
-          category: 'milestone',
-          dueDateClass: '',
-          start: getDate('date', today, 1, '+').toISOString(),
-          end: getDate('date', today, 1, '+').toISOString(),
-          isReadOnly: true
-        },
-        {
-          id: '3',
-          calendarId: '1',
-          title: 'Ramos',
-          category: 'allday',
-          dueDateClass: '',
-          start: getDate('date', today, 2, '-').toISOString(),
-          end: getDate('date', today, 1, '-').toISOString(),
-          isReadOnly: true
-        },
-        {
-          id: '4',
-          calendarId: '1',
-          title: 'Report',
-          category: 'time',
-          dueDateClass: '',
-          start: today.toISOString(),
-          end: getDate('hours', today, 1, '+').toISOString()
-        }
+        //  {
+        // id: '1',
+        // calendarId: '1',
+        // title: 'my schedule',
+        // category: 'time',
+        // dueDateClass: '',
+        // start: '2020-11-13T07:31:54.329Z',
+        // end: '2020-11-14T07:31:54.329Z'
+        // },
+        // {
+        //   id: '1',
+        //   calendarId: '0',
+        //   title: schedules[0].title,
+        //   category: 'time',
+        //   dueDateClass: '',
+        //   start: today.toISOString(),
+        //   end: getDate('hours', today, 3, '+').toISOString()
+        // },
+        // {
+        //   id: '11',
+        //   calendarId: '0',
+        //   title: 'Test',
+        //   category: 'time',
+        //   dueDateClass: '',
+        //   start: today.toISOString(),
+        //   end: getDate('hours', today, 3, '+').toISOString()
+        // },
+        // {
+        //   id: '2',
+        //   calendarId: '1',
+        //   title: 'Marjon',
+        //   category: 'milestone',
+        //   dueDateClass: '',
+        //   start: getDate('date', today, 1, '+').toISOString(),
+        //   end: getDate('date', today, 1, '+').toISOString(),
+        //   isReadOnly: true
+        // },
+        // {
+        //   id: '3',
+        //   calendarId: '1',
+        //   title: 'Ramos',
+        //   category: 'allday',
+        //   dueDateClass: '',
+        //   start: getDate('date', today, 2, '-').toISOString(),
+        //   end: getDate('date', today, 1, '-').toISOString(),
+        //   isReadOnly: true
+        // },
+        // {
+        //   id: '4',
+        //   calendarId: '1',
+        //   title: 'Report',
+        //   category: 'time',
+        //   dueDateClass: '',
+        //   start: today.toISOString(),
+        //   end: getDate('hours', today, 1, '+').toISOString()
+        // }
       ],
 
       theme: myTheme,
@@ -193,6 +434,27 @@ export default {
   methods: {
     init() {
       this.setRenderRangeText();
+    },
+    loadSchedules() {
+     axios.get('/api/schedules')
+     .then((response) => {
+       this.schedules = response.data;
+    
+    var i;
+    for (i = 0; i < this.schedules.length; i++) {   
+      let schedule = this.schedules[i];
+     
+      this.scheduleList.push({
+          id: schedule.id,
+          title: schedule.title,
+          category: schedule.category,
+          bgColor: '#f54242',
+          start: schedule.start,
+          end: schedule.end
+          })
+      }
+
+     })
     },
     setRenderRangeText() {
       const {invoke} = this.$refs.tuiCal;
@@ -279,6 +541,7 @@ export default {
   },
   mounted() {
     this.init();
+    this.loadSchedules();
   }
 };
 </script>

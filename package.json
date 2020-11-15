@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "axios": "^0.18.0",
         "@toast-ui/vue-calendar": "^1.1.1",
         "chance": "1.0.16",
         "jquery": "3.2.1",

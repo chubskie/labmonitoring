@@ -15,12 +15,16 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->increments('scheduleID');
-            $table->dateTime('timeStart');
-            $table->dateTime('timeEnd');
+            $table->integer('calendarId')->unsigned();
+            $table->string('title', 191);
+            $table->string('category', 191);
+            $table->string('dueDateClass', 191);
+            $table->string('start');
+            $table->string('end');
             $table->boolean('reccuring');
+            $table->boolean('isReadOnly');
             $table->dateTime('reccuringEnd');
-            $table->string('color', 50);
-            $table->string('description', 191);
+            $table->string('color', 50);           
             $table->integer('labID')->unsigned();
             $table->integer('studentID')->unsigned();
             $table->timestamps();

@@ -72,7 +72,7 @@ export default {
     },
     useCreationPopup: {
       type: Boolean,
-      default: true
+      default: false
     },
     useDetailPopup: {
       type: Boolean,
@@ -90,11 +90,11 @@ export default {
     },
     disableClick: {
       type: Boolean,
-      default: false
+      default: true
     },
     isReadOnly: {
       type: Boolean,
-      default: false
+      default: true
     },
     usageStatistics: {
       type: Boolean,

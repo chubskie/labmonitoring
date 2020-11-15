@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Schedule;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
@@ -13,7 +13,11 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        return view('calendar');
+        $schedules = Schedule::all();
+        return view('calendar')->with('schedules', $schedules);
+    }
+    public function schedules(){ 
+        return Schedule::all(); 
     }
 
     /**
