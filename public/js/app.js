@@ -2250,14 +2250,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -46230,7 +46222,10 @@ var staticRenderFns = [
                       [
                         _c("input", {
                           staticClass: "input",
-                          attrs: { type: "text", placeholder: "Start Date" }
+                          attrs: {
+                            type: "datetime-local",
+                            placeholder: "Start Date"
+                          }
                         }),
                         _vm._v(" "),
                         _c("span", { staticClass: "icon is-small is-left" }, [
@@ -46247,7 +46242,10 @@ var staticRenderFns = [
                       [
                         _c("input", {
                           staticClass: "input",
-                          attrs: { type: "text", placeholder: "End Date" }
+                          attrs: {
+                            type: "datetime-local",
+                            placeholder: "End Date"
+                          }
                         }),
                         _vm._v(" "),
                         _c("span", { staticClass: "icon is-small is-left" }, [
@@ -46269,19 +46267,10 @@ var staticRenderFns = [
                     _c("div", { staticClass: "control" }, [
                       _c("label", { staticClass: "radio" }, [
                         _c("input", {
-                          attrs: { type: "radio", name: "allday" }
+                          attrs: { type: "checkbox", name: "allday" }
                         }),
                         _vm._v(
                           "\r\n                                            Yes\r\n                                        "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "radio" }, [
-                        _c("input", {
-                          attrs: { type: "radio", name: "allday", checked: "" }
-                        }),
-                        _vm._v(
-                          "\r\n                                            No\r\n                                        "
                         )
                       ])
                     ])
@@ -46410,7 +46399,10 @@ var staticRenderFns = [
                       [
                         _c("input", {
                           staticClass: "input",
-                          attrs: { type: "text", placeholder: "Start Date" }
+                          attrs: {
+                            type: "datetime-local",
+                            placeholder: "Start Date"
+                          }
                         }),
                         _vm._v(" "),
                         _c("span", { staticClass: "icon is-small is-left" }, [
@@ -46427,7 +46419,10 @@ var staticRenderFns = [
                       [
                         _c("input", {
                           staticClass: "input",
-                          attrs: { type: "text", placeholder: "End Date" }
+                          attrs: {
+                            type: "datetime-local",
+                            placeholder: "End Date"
+                          }
                         }),
                         _vm._v(" "),
                         _c("span", { staticClass: "icon is-small is-left" }, [
@@ -46447,21 +46442,12 @@ var staticRenderFns = [
                 _c("div", { staticClass: "field-body" }, [
                   _c("div", { staticClass: "field is-narrow" }, [
                     _c("div", { staticClass: "control" }, [
-                      _c("label", { staticClass: "radio" }, [
+                      _c("label", { staticClass: "checkbox" }, [
                         _c("input", {
-                          attrs: { type: "radio", name: "allday" }
+                          attrs: { type: "checkbox", name: "allday" }
                         }),
                         _vm._v(
                           "\r\n                                            Yes\r\n                                        "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "radio" }, [
-                        _c("input", {
-                          attrs: { type: "radio", name: "allday", checked: "" }
-                        }),
-                        _vm._v(
-                          "\r\n                                            No\r\n                                        "
                         )
                       ])
                     ])

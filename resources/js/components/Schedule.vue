@@ -94,7 +94,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" placeholder="Start Date">
+                                        <input class="input" type="datetime-local" placeholder="Start Date">
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
                                         </span>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left ">
-                                        <input class="input" type="text" placeholder="End Date"
+                                        <input class="input" type="datetime-local" placeholder="End Date"
                                             >
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
@@ -120,12 +120,8 @@
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" name="allday">
+                                            <input type="checkbox" name="allday">
                                             Yes
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="allday" checked>
-                                            No
                                         </label>
                                     </div>
                                 </div>
@@ -204,7 +200,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" placeholder="Start Date">
+                                        <input class="input" type="datetime-local" placeholder="Start Date">
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
                                         </span>
@@ -212,7 +208,7 @@
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left ">
-                                        <input class="input" type="text" placeholder="End Date"
+                                        <input class="input" type="datetime-local" placeholder="End Date"
                                             >
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
@@ -229,13 +225,9 @@
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <div class="control">
-                                        <label class="radio">
-                                            <input type="radio" name="allday">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="allday">
                                             Yes
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="allday" checked>
-                                            No
                                         </label>
                                     </div>
                                 </div>
