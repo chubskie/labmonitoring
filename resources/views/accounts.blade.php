@@ -61,7 +61,7 @@
                 <input class="input" id="password" type="password" name="password" minlength="8" required>
               </div>
               <div class="control">
-                <button id="view" class="button has-background-grey-light" type="button">
+                <button class="button has-background-grey-light view" type="button">
                   <span class="icon">
                     <i class="fas fa-eye"></i>
                   </span>
@@ -79,43 +79,61 @@
   </div>
 </div>
 
-{{-- <div class="card" style="display:none">
+<div id="passCard" class="card" style="display:none">
   <header class="card-header">
-    <p class="card-header-title">
-      Change password
-    </p>
+    <p class="card-header-title">Change password</p>
   </header>
   <div class="card-content">
     <div class="content">
-      <form method="POST" action="{{ route('change.password') }}">
-        @csrf 
-        <div class="field">
-          <label class="label">Current Password</label>
-          <div class="control">
-            <input class="input" type="password" class="form-control" name="current_password" autocomplete="current-password">
+      <form id="changePass">
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label">Current Password</label>
+          </div>
+          <div class="field-body">
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <input class="input" id="current" type="password" name="current" minlength="8" required>
+                <div id="currenthelp" class="help is-danger"></div>
+              </div>
+              <div class="control">
+                <button class="button has-background-grey-light view" type="button">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <label class="label">New Password</label>
-          <div class="control">
-
-            <input class="input" id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label">New Password</label>
+          </div>
+          <div class="field-body">
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <input class="input" id="new" type="password" name="new" minlength="8" required>
+                <div id="newhelp" class="help is-danger"></div>
+              </div>
+              <div class="control">
+                <button class="button has-background-grey-light view" type="button">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <label class="label">New Confirm Password</label>
-          <div class="control">
-
-            <input class="input" id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
-          </div>
-        </div>
-        <div class="control">
-          <button type="submit" class="button is-primary">Update password</button>
+        <div class="buttons is-centered">
+          <button type="submit" class="button is-success">Submit</button>
+          <button class="button is-danger is-outlined cancel" type="button">Cancel</button>
         </div>
       </form>
     </div>
   </div>
-</div> --}}
+</div>
 
 <table class="table is-striped is-hoverable is-fullwidth mt-3">
   <thead>
