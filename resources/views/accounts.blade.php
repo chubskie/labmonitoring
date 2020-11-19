@@ -21,9 +21,7 @@
 
 <div id="add-card" class="card" style="display:none">
   <header class="card-header">
-    <p class="card-header-title">
-      Add Account
-    </p>
+    <p class="card-header-title"></p>
   </header>
   <div class="card-content">
     <div class="content">
@@ -53,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="field is-horizontal">
+        <div id="pass-field" class="field is-horizontal">
           <div class="field-label">
             <label class="label">Password</label>
           </div>
@@ -136,12 +134,12 @@
       <td>{{ $user->name }}</td>
       <td>
         <div class="buttons is-right">
-          <button class="button" data-id="{{ $user->id }}">
+          <button class="button edit" data-id="{{ $user->id }}">
             <span class="icon">
               <i class="fas fa-edit"></i>
             </span>
           </button>
-          <button class="button is-danger is-outlined" data-id="{{ $user->id }}">
+          <button class="button is-danger is-outlined remove" data-id="{{ $user->id }}">
             <span class="icon">
               <i class="fas fa-trash"></i>
             </span>

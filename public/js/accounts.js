@@ -21,12 +21,12 @@ $(function() {
 			<td>${data.users[i].name}</td>
 			<td>
 			<div class="buttons is-right">
-			<button class="button" data-id="${data.users[i].id}">
+			<button class="button edit" data-id="${data.users[i].id}">
 			<span class="icon">
 			<i class="fas fa-edit"></i>
 			</span>
 			</button>
-			<button class="button is-danger is-outlined" data-id="${data.users[i].id}">
+			<button class="button is-danger is-outlined remove" data-id="${data.users[i].id}">
 			<span class="icon">
 			<i class="fas fa-trash"></i>
 			</span>
@@ -39,11 +39,17 @@ $(function() {
 		$('tbody').empty().append(table);
 	}
 
-	$('#accounts').addClass('is-active');
+	var modal = '';
+	$('#accounts').addClass('is-active').removeAttr('href');
 
 	$('#add').click(function() {
+		modal = 'add';
 		$('#add-card').slideDown();
 		$(this).addClass('is-hidden');
+		$('.card-header-title').text('Add Account');
+		$('#pass-field').removeClass('is-hidden');
+		$('#password').attr('required', true);
+		$('table button').attr('disabled', true);
 	});
 
 	$('.cancel').click(function() {
@@ -52,12 +58,13 @@ $(function() {
 		$('#addUser input').val('').removeAttr('readonly').removeClass('is-success').removeClass('is-danger');
 		$('#addUser button').removeAttr('disabled').removeClass('is-loading');
 		$('#addUser help').removeClass('has-text-danger').text('Username must be between 5 to 20 characters with at least 1 alphabetical character');
+		$('table button').removeAttr('disabled');
 	});
 
 	$('#addUser').submit(function(e) {
 		e.preventDefault();
 		if ($('#password').attr('type') == 'text') {
-			$('#passowrd').attr('type', 'password');
+			$('#password').attr('type', 'password');
 			$('#view').addClass('has-background-grey-light').removeClass('has-background-grey-dark');
 			$('#view').find('.icon').removeClass('has-text-white');
 			$('#view').find('svg').removeClass('fa-eye-slash').addClass('fa-eye');
@@ -66,9 +73,10 @@ $(function() {
 		$('button').attr('disabled', true);
 		$('input').attr('readonly', true);
 		let data = $(this).serialize();
+		let link = modal == 'add' ? 'accounts/addUser' : 'accounts/' + $('#username').attr('data-id') + '/update';
 		$.ajax({
 			type: 'POST',
-			url: 'accounts/addUser',
+			url: link,
 			data: data,
 			datatype: 'JSON',
 			success: function(data) {
@@ -76,8 +84,16 @@ $(function() {
 				$('button').removeAttr('disabled');
 				$('input').removeAttr('readonly');
 				if (data.status) {
-					retrieveAccounts(data);
-					$('.cancel').click();
+					Swal.fire({
+						icon: 'success',
+						title: 'Update Successful',
+						text: data.msg,
+						showConfirmButton: false,
+						timer: 2500
+					}).then(function() {
+						retrieveAccounts(data);
+						$('.cancel').click();
+					});
 				}
 			},
 			error: function(err) {
@@ -107,10 +123,11 @@ $(function() {
 		$(this).parent().addClass('is-loading');
 		let input = this;
 		let username = $(this).val();
+		let id = $(this).attr('data-id');
 		$.ajax({
 			type: 'POST',
 			url: 'accounts',
-			data: {'username':username},
+			data: {username:username, id:id},
 			datatype: 'JSON',
 			success: function(response) {
 				$(input).parent().removeClass('is-loading');
@@ -121,7 +138,6 @@ $(function() {
 					$(input).addClass('is-danger');
 					$(input).next().addClass('has-text-danger').text(response.msg);
 				}
-
 			},
 			error: function(err) {
 				serverError(err);
@@ -134,5 +150,56 @@ $(function() {
 	$('#username').keyup(function() {
 		$(this).removeClass('is-danger').removeClass('is-success');
 		$(this).next().removeClass('has-text-danger').text('Username must be between 5 to 20 characters with at least 1 alphabetical character');
+		$('button[type="submit"]').removeAttr('disabled');
+	});
+
+	$('body').delegate('.edit', 'click', function() {
+		modal = 'edit';
+		let elem = this;
+		$('.card-header-title').text('Edit Account');
+		$('#username').attr('data-id', $(this).data('id'));
+		Swal.fire({
+			icon: 'question',
+			title: 'What do you want to update?',
+			showDenyButton: true,
+			showCancelButton: true,
+			confirmButtonText: 'Account Information',
+			denyButtonText: 'Change Password'
+		}).then((result) => {
+			if (result.isConfirmed || result.isDenied) {
+				Swal.fire({
+					html: `<span class="icon is-large">
+					<i class="fas fa-spinner fa-spin fa-lg"></i>
+					</span>`,
+					showConfirmButton: false,
+					allowOutsideClick: false,
+					allowEscapeKey: false
+				});
+				let data = result.isConfirmed ? 'information' : 'password';
+				$.ajax({
+					type: 'POST',
+					url: 'accounts/' + $(elem).data('id'),
+					data: {data:data},
+					datatype: 'JSON',
+					success: function(data) {
+						if (result.isConfirmed) {
+							$('#name').val(data.name);
+							$('#username').val(data.username);
+							$('#pass-field').addClass('is-hidden');
+							$('#password').removeAttr('required');
+							Swal.close();
+							$('#add-card').slideDown();
+							$('#add').addClass('is-hidden');
+							$('table button').attr('disabled', true);
+						} else {
+
+						}
+					},
+					error: function(err) {
+						serverError(err);
+					}
+				});
+			}
+		});
 	});
 });

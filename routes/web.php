@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('', 'IndexController@dashboard')->name('dashboard');
 Route::get('accounts', 'AccountsController@getAccounts');
 Route::post('accounts', 'AccountsController@index');
-Route::post('accounts/addUser', 'AccountsController@addUser')->name('addUser');
+Route::post('accounts/addUser', 'AccountsController@store')->name('addUser');
+Route::post('accounts/{id}', 'AccountsController@edit');
+Route::post('accounts/{id}/update', 'AccountsController@update');
 Route::post('change-password', 'AccountsController@store')->name('change.password');
 
 Route::get('freelab', 'IndexController@freelab');

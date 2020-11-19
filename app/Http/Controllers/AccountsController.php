@@ -11,14 +11,26 @@ use App\Rules\MatchOldPassword;
 class AccountsController extends Controller
 {
 	public function getAccounts() {
-		$users = User::select('id', 'name', 'username')->get();
+		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
 		$user = Auth::user();
-		return view('accounts')
-		->with('users', $users)
-		->with('user', $user);
+		return view('accounts', [
+			'users' => $users,
+			'user' => $user
+		]);
 	}
 
-	public function addUser(Request $request){
+	public function index(Request $request) {
+		if ($request->id)
+			$duplicates = User::where('username', $request->username)->where('id', '<>', $request->id)->count();
+		else
+			$duplicates = User::where('username', $request->username)->count();
+		if ($duplicates > 0) {
+			return response()->json(['msg' => 'This username is already taken']);
+		}
+		return response()->json(['status' => 'success']);
+	}
+
+	public function store(Request $request){
 		$this->validate($request, [
 			'name' => ['required', 'string', 'max:255'],
 			'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users'],
@@ -38,27 +50,46 @@ class AccountsController extends Controller
 		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
 
 		// Response
-		return response()->json(['status' => 'success', 'users' => $users]);
+		return response()->json(['status' => 'success', 'msg' => 'User [' . $user->username . '] has been created', 'users' => $users]);
 	}
 
-	public function index(Request $request) {
-		$duplicates = User::where('username', $request->username)->count();
-		if ($duplicates > 0) {
-			return response()->json(['msg' => 'This username is already taken']);
-		}
-		return response()->json(['status' => 'success']);
+	// public function store(Request $request)
+	// {
+	// 	$request->validate([
+	// 		'current_password' => ['required', new MatchOldPassword],
+	// 		'new_password' => ['required'],
+	// 		'new_confirm_password' => ['same:new_password'],
+	// 	]);
+
+	// 	User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+	// 	dd('Password change successfully.');
+	// }
+
+	public function edit(Request $request, $id) {
+		if ($request->data == 'information')
+			return User::select('username', 'name')->find($id);
+		else
+			return User::select('password')->find($id);
 	}
 
-	public function store(Request $request)
-	{
-		$request->validate([
-			'current_password' => ['required', new MatchOldPassword],
-			'new_password' => ['required'],
-			'new_confirm_password' => ['same:new_password'],
+	public function update(Request $request, $id) {
+		$this->validate($request, [
+			'name' => ['required', 'string', 'max:255'],
+			'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users'],
 		]);
 
-		User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+		// Create New User
+		$user = User::find($id);
+		$user->name = $request->name;
+		$user->username = $request->username;
+		$user->updated_at = Carbon::now('+8:00');
+		// Save User
+		$user->save();
 
-		dd('Password change successfully.');
+		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
+
+		// Response
+		return response()->json(['status' => 'success', 'msg' => 'User [' . $user->username . '] has been updated', 'users' => $users]);
 	}
 }
