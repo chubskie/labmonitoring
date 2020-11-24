@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Laboratory extends Model
 {
-    protected $primaryKey = 'labID';
-    protected $fillable = ['labName', 'labStatus'];
+	protected $fillable = ['labName'];
 
-    public function schedule()
-    {
-        return $this->hasMany('App\Schedule','scheduleID');
-    }
+	public function schedule()
+	{
+		return $this->hasMany('App\Schedule','labID');
+	}
 }

@@ -24,3 +24,5 @@ Route::post('accounts/{id}/delete', 'AccountsController@destroy');
 
 Route::get('freelab', 'IndexController@freelab');
 Route::post('freelab-store', 'IndexController@postfreelab');
+
+Route::get('schedules', 'CalendarController@index');

@@ -14,25 +14,30 @@ class CreateSchedulesTable extends Migration
     public function up()
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->time('timeStart');
-            $table->time('timeEnd');
+            $table->id(); // id() will automatically create id column with auto-increment and primary key
+            $table->string('start');
+            $table->string('end');
             $table->boolean('reccuring');
-            $table->date('reccuringEnd');
-            $table->string('color', 50);
-            $table->string('description', 191);
+            $table->dateTime('reccuringEnd');
+            $table->string('color');
+            $table->longText('description');
             $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('professor');
+            $table->string('course');
+            $table->string('category'); // Para saan yung category?
+            $table->string('dueDateClass'); // Para saan yung due date?
+            $table->boolean('isReadOnly'); // Para saan yung readonly?
             $table->timestamps();
         });
     }
 
-    /**
+        /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('schedules');
+        public function down()
+        {
+            Schema::dropIfExists('schedules');
+        }
     }
-}

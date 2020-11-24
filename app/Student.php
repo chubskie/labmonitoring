@@ -6,13 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $primaryKey = 'studentID';
-    protected $fillable = ['type', 'fullName', 'studentNumber'];
-
-    public function schedule()
-    {
-        return $this->belongsTo('App\Schedule','scheduleID');
-    }
+    protected $fillable = ['fullName', 'studentNumber'];
 
     public function log()
     {

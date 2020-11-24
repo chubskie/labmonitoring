@@ -15,7 +15,7 @@
 			</a>
 		</li>
 		<li>
-			<a id="schedules">
+			<a id="schedules" href="{{ URL::to('schedules') }}">
 				<span class="icon">
 					<i class="fas fa-clock"></i>
 				</span>
@@ -23,7 +23,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{ URL::to('freelab') }}" id="freelab">
+			<a id="freelab" href="{{ URL::to('freelab') }}">
 				<span class="icon">
 					<i class="fas fa-list-alt"></i>
 				</span>
