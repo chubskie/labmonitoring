@@ -111,4 +111,12 @@ class AccountsController extends Controller
 
 		return response()->json(['msg' => 'Successfully changed password']);
 	}
+
+	public function destroy($id) {
+		$user = User::find($id);
+
+		$user->delete();
+		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
+		return response()->json(['msg' => 'User [' . $user->username . '] has been deleted', 'users' => $users]);
+	}
 }

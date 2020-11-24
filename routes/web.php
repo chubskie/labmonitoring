@@ -20,6 +20,7 @@ Route::post('accounts/addUser', 'AccountsController@store')->name('addUser');
 Route::post('accounts/{id}', 'AccountsController@edit');
 Route::post('accounts/{id}/update', 'AccountsController@update');
 Route::post('accounts/{id}/changepass', 'AccountsController@changepass');
+Route::post('accounts/{id}/delete', 'AccountsController@destroy');
 
 Route::get('freelab', 'IndexController@freelab');
 Route::post('freelab-store', 'IndexController@postfreelab');

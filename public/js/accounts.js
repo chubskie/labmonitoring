@@ -351,5 +351,67 @@ $(function() {
 				serverError(err);
 			}
 		});
-	})
+	});
+
+	$('body').delegate('.remove', 'click', function() {
+		let id = $(this).data('id');
+		Swal.fire({
+			html: `<span class="icon is-large">
+			<i class="fas fa-spinner fa-spin fa-lg"></i>
+			</span>`,
+			showConfirmButton: false,
+			allowOutsideClick: false,
+			allowEscapeKey: false
+		});
+		$.ajax({
+			type: 'POST',
+			url: 'accounts/' + id,
+			data: {data:'information'},
+			datatype: 'JSON',
+			success: function(data) {
+				Swal.fire({
+					icon: 'question',
+					title: 'Confirm Delete',
+					html: `Are you sure you want to delete ${data.username}?
+					<div class="help">${data.name}</div>`,
+					showCancelButton: true,
+					cancelButtonText: 'No',
+					confirmButtonText: 'Yes'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						Swal.fire({
+							html: `<span class="icon is-large">
+							<i class="fas fa-spinner fa-spin fa-lg"></i>
+							</span>`,
+							showConfirmButton: false,
+							allowOutsideClick: false,
+							allowEscapeKey: false
+						});
+						$.ajax({
+							type: 'POST',
+							url: 'accounts/' + id + '/delete',
+							datatype: 'JSON',
+							success: function(data) {
+								Swal.fire({
+									icon: 'success',
+									title: 'Delete Successful',
+									text: data.msg,
+									showConfirmButton: false,
+									timer: 2500
+								}).then(function() {
+									retrieveAccounts(data);
+								});
+							},
+							error: function(err) {
+								serverError(err);
+							}
+						});
+					}
+				});
+			},
+			error: function(err) {
+				serverError(err);
+			}
+		});
+	});
 });
