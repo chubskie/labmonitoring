@@ -1,3 +1,3 @@
 $(function() {
-	$('#dashboard').addClass('is-active');
+	$('#dashboard').addClass('is-active').removeAttr('href');
 });

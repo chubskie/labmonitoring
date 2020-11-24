@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('', 'IndexController@dashboard')->name('dashboard');
 Route::get('accounts', 'AccountsController@getAccounts');
 Route::post('accounts', 'AccountsController@index');
@@ -26,3 +25,4 @@ Route::get('freelab', 'IndexController@freelab');
 Route::post('freelab-store', 'IndexController@postfreelab');
 
 Route::get('schedules', 'CalendarController@index');
+Route::get('logs', 'IndexController@logs');

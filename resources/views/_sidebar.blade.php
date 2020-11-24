@@ -31,7 +31,7 @@
 			</a>
 		</li>
 		<li>
-			<a id="accounts" href="{{URL::to('accounts')}}">
+			<a id="accounts" href="{{ URL::to('accounts') }}">
 				<span class="icon">
 					<i class="fas fa-users"></i>
 				</span>
@@ -39,7 +39,7 @@
 			</a>
 		</li>
 		<li>
-			<a id="logs">
+			<a id="logs" href="{{ URL::to('logs') }}">
 				<span class="icon">
 					<i class="fas fa-stream"></i>
 				</span>

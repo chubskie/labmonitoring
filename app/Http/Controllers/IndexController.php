@@ -17,4 +17,8 @@ class IndexController extends Controller
 	public function postfreelab() {
 		
 	}
+
+	public function logs() {
+		return view('logs');
+	}
 }
