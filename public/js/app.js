@@ -2330,6 +2330,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2372,20 +2430,17 @@ var getDate = function getDate(type, start, value, operator) {
       }],
       dateRange: '',
       selectedView: 'week',
-      // calendarList: [
-      //   {
-      //     id: '0',
-      //     name: 'Private',
-      //     bgColor: '#9e5fff',
-      //     borderColor: '#9e5fff'
-      //   },
-      //   {
-      //     id: '1',
-      //     name: 'Company',
-      //     bgColor: '#00a9ff',
-      //     borderColor: '#00a9ff'
-      //   }
-      // ],
+      calendarList: [{
+        id: '0',
+        name: 'Private',
+        bgColor: '#9e5fff',
+        borderColor: '#9e5fff'
+      }, {
+        id: '1',
+        name: 'Company',
+        bgColor: '#00a9ff',
+        borderColor: '#00a9ff'
+      }],
       scheduleList: [//  {
         // id: '1',
         // calendarId: '1',
@@ -2462,8 +2517,8 @@ var getDate = function getDate(type, start, value, operator) {
         startDayOfWeek: 0
       },
       week: {
-        showTimezoneCollapseButton: true,
-        timezonesCollapsed: true
+        showTimezoneCollapseButton: false,
+        timezonesCollapsed: false
       },
       taskView: true,
       scheduleView: true,
@@ -2572,21 +2627,20 @@ var getDate = function getDate(type, start, value, operator) {
       console.group('onAfterRenderSchedule');
       console.log('Schedule Info : ', res.schedule);
       console.groupEnd();
-    },
-    onClickTimezonesCollapseBtn: function onClickTimezonesCollapseBtn(timezonesCollapsed) {
-      // view : week, day
-      console.group('onClickTimezonesCollapseBtn');
-      console.log('Is Collapsed Timezone? ', timezonesCollapsed);
-      console.groupEnd();
+    } // onClickTimezonesCollapseBtn(timezonesCollapsed) {
+    //   // view : week, day
+    //   console.group('onClickTimezonesCollapseBtn');
+    //   console.log('Is Collapsed Timezone? ', timezonesCollapsed);
+    //   console.groupEnd();
+    //   if (timezonesCollapsed) {
+    //     this.theme['week.timegridLeft.width'] = '100px';
+    //     this.theme['week.daygridLeft.width'] = '100px';
+    //   } else {
+    //     this.theme['week.timegridLeft.width'] = '50px';
+    //     this.theme['week.daygridLeft.width'] = '50px';
+    //   }
+    // }
 
-      if (timezonesCollapsed) {
-        this.theme['week.timegridLeft.width'] = '100px';
-        this.theme['week.daygridLeft.width'] = '100px';
-      } else {
-        this.theme['week.timegridLeft.width'] = '50px';
-        this.theme['week.daygridLeft.width'] = '50px';
-      }
-    }
   },
   mounted: function mounted() {
     this.init();
@@ -46171,8 +46225,7 @@ var render = function() {
           clickSchedule: _vm.onClickSchedule,
           clickDayname: _vm.onClickDayname,
           beforeDeleteSchedule: _vm.onBeforeDeleteSchedule,
-          afterRenderSchedule: _vm.onAfterRenderSchedule,
-          clickTimezonesCollapseBtn: _vm.onClickTimezonesCollapseBtn
+          afterRenderSchedule: _vm.onAfterRenderSchedule
         }
       })
     ],
@@ -46221,7 +46274,7 @@ var staticRenderFns = [
             _c("form", { attrs: { id: "newSchedule" } }, [
               _c("div", { staticClass: "field is-horizontal" }, [
                 _c("div", { staticClass: "field-label is-normal" }, [
-                  _c("label", { staticClass: "label" }, [_vm._v("Title")])
+                  _c("label", { staticClass: "label" }, [_vm._v("Professor")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "field-body" }, [
@@ -46229,7 +46282,32 @@ var staticRenderFns = [
                     _c("div", { staticClass: "control" }, [
                       _c("input", {
                         staticClass: "input",
-                        attrs: { type: "text", placeholder: "e.g. Prof's Name" }
+                        attrs: { type: "text" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "help is-danger" }, [
+                      _vm._v(
+                        "\r\n                                        This field is required\r\n                                    "
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "field is-horizontal" }, [
+                _c("div", { staticClass: "field-label is-normal" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Course / Subject")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "field-body" }, [
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        staticClass: "input",
+                        attrs: { type: "text" }
                       })
                     ]),
                     _vm._v(" "),
@@ -46261,7 +46339,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "field is-horizontal" }, [
                 _c("div", { staticClass: "field-label is-normal" }, [
-                  _c("label", { staticClass: "label" }, [_vm._v("Category")])
+                  _c("label", { staticClass: "label" }, [_vm._v("Lab Number")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "field-body" }, [
@@ -46337,7 +46415,11 @@ var staticRenderFns = [
                     _c("div", { staticClass: "control" }, [
                       _c("label", { staticClass: "checkbox" }, [
                         _c("input", {
-                          attrs: { type: "checkbox", name: "allday" }
+                          attrs: {
+                            type: "checkbox",
+                            name: "allday",
+                            id: "allday"
+                          }
                         }),
                         _vm._v(
                           "\r\n                                            Yes\r\n                                        "
@@ -46347,6 +46429,98 @@ var staticRenderFns = [
                   ])
                 ])
               ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "field is-horizontal",
+                  attrs: { id: "reccuring_toggle" }
+                },
+                [
+                  _c("div", { staticClass: "field-label" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Recurring?")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field-body" }, [
+                    _c("div", { staticClass: "field is-narrow" }, [
+                      _c("div", { staticClass: "control" }, [
+                        _c("label", { staticClass: "checkbox" }, [
+                          _c("input", {
+                            attrs: {
+                              type: "checkbox",
+                              name: "allday",
+                              id: "recurring"
+                            }
+                          }),
+                          _vm._v(
+                            "\r\n                                            Yes\r\n                                        "
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "field is-horizontal",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "recurring_form" }
+                },
+                [
+                  _c("div", { staticClass: "field-label is-normal" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Recurring Date")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field-body" }, [
+                    _c("div", { staticClass: "field" }, [
+                      _c(
+                        "p",
+                        { staticClass: "control is-expanded has-icons-left" },
+                        [
+                          _c("input", {
+                            staticClass: "input",
+                            attrs: {
+                              type: "datetime-local",
+                              placeholder: "Recurring Start Date"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "icon is-small is-left" }, [
+                            _c("i", { staticClass: "fas fa-calendar" })
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "field" }, [
+                      _c(
+                        "p",
+                        { staticClass: "control is-expanded has-icons-left " },
+                        [
+                          _c("input", {
+                            staticClass: "input",
+                            attrs: {
+                              type: "datetime-local",
+                              placeholder: "Recurring End Date"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "icon is-small is-left" }, [
+                            _c("i", { staticClass: "fas fa-calendar" })
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "buttons is-centered" }, [
                 _c(

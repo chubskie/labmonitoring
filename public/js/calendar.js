@@ -20,4 +20,18 @@ $(function() {
     $('#newsched').removeClass('is-hidden');
     $('#freelab').removeClass('is-hidden');
   });
+  
+
+  
+  $('#allday').click(function() {
+    $("#reccuring_toggle").toggle();
+  });
+
+  $('#recurring').click(function() {
+    $("#recurring_form").toggle(this.checked);
+  });
+
+
 });
+
+

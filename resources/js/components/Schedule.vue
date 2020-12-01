@@ -38,13 +38,30 @@
                     <form id="newSchedule">
                         <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label">Title</label>
+                                <label class="label">Professor</label>
                             </div>
                             <div class="field-body">
                                 <div class="field">
                                     <div class="control">
                                         <input class="input" type="text"
-                                            placeholder="e.g. Prof's Name">
+                                            >
+                                    </div>
+                                    <p class="help is-danger">
+                                        This field is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Course / Subject</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text"
+                                            >
                                     </div>
                                     <p class="help is-danger">
                                         This field is required
@@ -68,7 +85,7 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label">Category</label>
+                                <label class="label">Lab Number</label>
                             </div>
                             <div class="field-body">
                                 <div class="field is-narrow">
@@ -117,10 +134,51 @@
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <label class="checkbox">
-                                            <input type="checkbox" name="allday">
+                                            <input type="checkbox" name="allday" id="allday">
                                             Yes
                                         </label>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal" id="reccuring_toggle">
+                            <div class="field-label">
+                                <label class="label">Recurring?</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="allday" id="recurring" >
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="field is-horizontal" id="recurring_form" style="display:none">
+                            <div class="field-label is-normal">
+                                <label class="label">Recurring Date</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" type="datetime-local" placeholder="Recurring Start Date">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left ">
+                                        <input class="input" type="datetime-local" placeholder="Recurring End Date"
+                                            >
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +211,7 @@
             @clickDayname="onClickDayname"
             @beforeDeleteSchedule="onBeforeDeleteSchedule"
             @afterRenderSchedule="onAfterRenderSchedule"
-            @clickTimezonesCollapseBtn="onClickTimezonesCollapseBtn"
+  
   />
 
 </div>
@@ -164,8 +222,10 @@ import 'tui-time-picker/dist/tui-time-picker.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-calendar/dist/tui-calendar.css';
 import './app.css';
+
 import {Calendar} from './index';
 import myTheme from './myTheme';
+
 const today = new Date();
 const getDate = (type, start, value, operator) => {
   start = new Date(start);
@@ -201,20 +261,20 @@ export default {
       ],
       dateRange: '',
       selectedView: 'week',
-      // calendarList: [
-      //   {
-      //     id: '0',
-      //     name: 'Private',
-      //     bgColor: '#9e5fff',
-      //     borderColor: '#9e5fff'
-      //   },
-      //   {
-      //     id: '1',
-      //     name: 'Company',
-      //     bgColor: '#00a9ff',
-      //     borderColor: '#00a9ff'
-      //   }
-      // ],
+      calendarList: [
+        {
+          id: '0',
+          name: 'Private',
+          bgColor: '#9e5fff',
+          borderColor: '#9e5fff'
+        },
+        {
+          id: '1',
+          name: 'Company',
+          bgColor: '#00a9ff',
+          borderColor: '#00a9ff'
+        }
+      ],
       scheduleList: [
         //  {
         // id: '1',
@@ -292,8 +352,8 @@ export default {
         startDayOfWeek: 0
       },
       week: {
-        showTimezoneCollapseButton: true,
-        timezonesCollapsed: true
+        showTimezoneCollapseButton: false,
+        timezonesCollapsed: false
       },
       taskView: true,
       scheduleView: true,
@@ -396,19 +456,19 @@ export default {
       console.log('Schedule Info : ', res.schedule);
       console.groupEnd();
     },
-    onClickTimezonesCollapseBtn(timezonesCollapsed) {
-      // view : week, day
-      console.group('onClickTimezonesCollapseBtn');
-      console.log('Is Collapsed Timezone? ', timezonesCollapsed);
-      console.groupEnd();
-      if (timezonesCollapsed) {
-        this.theme['week.timegridLeft.width'] = '100px';
-        this.theme['week.daygridLeft.width'] = '100px';
-      } else {
-        this.theme['week.timegridLeft.width'] = '50px';
-        this.theme['week.daygridLeft.width'] = '50px';
-      }
-    }
+    // onClickTimezonesCollapseBtn(timezonesCollapsed) {
+    //   // view : week, day
+    //   console.group('onClickTimezonesCollapseBtn');
+    //   console.log('Is Collapsed Timezone? ', timezonesCollapsed);
+    //   console.groupEnd();
+    //   if (timezonesCollapsed) {
+    //     this.theme['week.timegridLeft.width'] = '100px';
+    //     this.theme['week.daygridLeft.width'] = '100px';
+    //   } else {
+    //     this.theme['week.timegridLeft.width'] = '50px';
+    //     this.theme['week.daygridLeft.width'] = '50px';
+    //   }
+    // }
   },
   mounted() {
     this.init();
