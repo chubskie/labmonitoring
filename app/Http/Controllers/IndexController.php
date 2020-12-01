@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Log;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -19,6 +20,9 @@ class IndexController extends Controller
 	}
 
 	public function logs() {
-		return view('logs');
+		$logs = Log::orderBy('created_at', 'desc')->paginate(50);
+		return view('logs', [
+			'logs' => $logs
+		]);
 	}
 }

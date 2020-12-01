@@ -33,7 +33,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input" id="name" type="text" name="name" maxlength="60" required>
+                <input class="input" id="name" type="text" name="name" maxlength="60" placeholder="Last Name, First Name M.I." required>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@
     </div>
   </div>
 </div>
-
+<hr>
 <table class="table is-striped is-hoverable is-fullwidth mt-3">
   <thead>
     <tr>
@@ -157,18 +157,25 @@
               <i class="fas fa-edit"></i>
             </span>
           </button>
+          @if (Auth::id() != $user->id)
           <button class="button is-danger is-outlined remove" data-id="{{ $user->id }}">
             <span class="icon">
               <i class="fas fa-trash"></i>
             </span>
           </button>
+          @endif
         </div>
       </td>
     </tr>
     @endforeach
     @else
     <tr>
-      <td class="has-text-centered" colspan="4">No users found.</td>
+      <td class="has-text-centered" colspan="4">
+        <span class="icon">
+          <i class="fas fa-info-circle"></i>
+        </span>
+        <span>No users found</span>
+      </td>
     </tr>
     @endif
   </tbody>

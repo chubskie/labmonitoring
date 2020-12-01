@@ -49,7 +49,8 @@
 	</ul>
 	<ul id="logout" class="menu-list">
 		<li>
-			<form>
+			<form action="{{ route('logout') }}" method="POST">
+				@csrf
 				<button class="button is-link is-light is-fullwidth has-text-dark">
 					<span class="icon">
 						<i class="fas fa-sign-out-alt"></i>

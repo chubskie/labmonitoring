@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,7 @@ class AccountsController extends Controller
 	public function store(Request $request){
 		$this->validate($request, [
 			'name' => ['required', 'string', 'max:255'],
-			'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users'],
+			'username' => ['required', 'string', 'min:5', 'max:20', 'unique:users'],
 			'password' => ['required', 'string', 'min:8'],
 		]);
 
@@ -42,29 +43,19 @@ class AccountsController extends Controller
 		$user->name = $request->name;
 		$user->username = $request->username;
 		$user->password = Hash::make($request->password);
-		$user->created_at = Carbon::now('+8:00');
-		$user->updated_at = Carbon::now('+8:00');
 		// Save User
 		$user->save();
+
+		Log::create([
+			'userID' => Auth::id(),
+			'description' => 'Added a new user [' . $user->username . ']',
+		]);
 
 		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
 
 		// Response
 		return response()->json(['status' => 'success', 'msg' => 'User [' . $user->username . '] has been created', 'users' => $users]);
 	}
-
-	// public function store(Request $request)
-	// {
-	// 	$request->validate([
-	// 		'current_password' => ['required', new MatchOldPassword],
-	// 		'new_password' => ['required'],
-	// 		'new_confirm_password' => ['same:new_password'],
-	// 	]);
-
-	// 	User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-
-	// 	dd('Password change successfully.');
-	// }
 
 	public function edit(Request $request, $id) {
 		if ($request->data == 'information') {
@@ -85,18 +76,22 @@ class AccountsController extends Controller
 	public function update(Request $request, $id) {
 		$this->validate($request, [
 			'name' => ['required', 'string', 'max:255'],
-			'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users'],
+			'username' => ['required', 'string', 'min:5', 'max:20', 'unique:users'],
 		]);
 
 		// Create New User
 		$user = User::find($id);
 		$user->name = $request->name;
 		$user->username = $request->username;
-		$user->updated_at = Carbon::now('+8:00');
 		// Save User
 		$user->save();
 
 		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
+
+		Log::create([
+			'userID' => Auth::id(),
+			'description' => 'Updated a user [' . $user->username . ']'
+		]);
 
 		// Response
 		return response()->json(['status' => 'success', 'msg' => 'User [' . $user->username . '] has been updated', 'users' => $users]);
@@ -106,8 +101,12 @@ class AccountsController extends Controller
 		$user = User::find($id);
 
 		$user->password = Hash::make($request->new);
-		$user->updated_at = Carbon::now('+8:00');
 		$user->save();
+
+		Log::create([
+			'userID' => Auth::id(),
+			'description' => 'Updated a user [' . $user->username . ']'
+		]);
 
 		return response()->json(['msg' => 'Successfully changed password']);
 	}
@@ -116,6 +115,12 @@ class AccountsController extends Controller
 		$user = User::find($id);
 
 		$user->delete();
+
+		Log::create([
+			'userID' => Auth::id(),
+			'description' => 'Deleted a user [' . $user->username . ']'
+		]);
+
 		$users = User::select('id', 'name', 'username')->orderBy('updated_at', 'desc')->get();
 		return response()->json(['msg' => 'User [' . $user->username . '] has been deleted', 'users' => $users]);
 	}

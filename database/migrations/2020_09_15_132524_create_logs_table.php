@@ -16,8 +16,8 @@ class CreateLogsTable extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->foreignID('userID')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignID('studentID')->constrained('students')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->foreignID('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignID('studentID')->nullable()->constrained('students')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignID('labID')->nullable()->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('description');
             $table->timestamps();
         });

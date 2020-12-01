@@ -14,27 +14,38 @@ $(function() {
 
 	function retrieveAccounts(data) {
 		let table = '';
-		for (let i in data.users) {
+		if (data.users.length > 0) {
+			for (let i in data.users) {
+				table += `
+				<tr>
+				<td>${data.users[i].username}</td>
+				<td>${data.users[i].name}</td>
+				<td>
+				<div class="buttons is-right">
+				<button class="button edit" data-id="${data.users[i].id}">
+				<span class="icon">
+				<i class="fas fa-edit"></i>
+				</span>
+				</button>
+				<button class="button is-danger is-outlined remove" data-id="${data.users[i].id}">
+				<span class="icon">
+				<i class="fas fa-trash"></i>
+				</span>
+				</button>
+				</div>
+				</td>
+				</tr>
+				`;
+			}
+		} else {
 			table += `
-			<tr>
-			<td>${data.users[i].username}</td>
-			<td>${data.users[i].name}</td>
-			<td>
-			<div class="buttons is-right">
-			<button class="button edit" data-id="${data.users[i].id}">
+			<tr colspan="3" class="has-text-centered">
 			<span class="icon">
-			<i class="fas fa-edit"></i>
+			<i class="fas fa-info-circle"></i>
 			</span>
-			</button>
-			<button class="button is-danger is-outlined remove" data-id="${data.users[i].id}">
-			<span class="icon">
-			<i class="fas fa-trash"></i>
-			</span>
-			</button>
-			</div>
-			</td>
+			<span>No users found</span>
 			</tr>
-			`;
+			`
 		}
 		$('tbody').empty().append(table);
 	}
