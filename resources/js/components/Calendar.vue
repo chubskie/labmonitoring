@@ -4,12 +4,10 @@
 </template>
 <script>
 import Calendar from 'tui-calendar';
-
 const scheduleNeedProp = [
   'start',
   'category'
 ];
-
 export default {
   name: 'ToastUICalendar',
   props: {
@@ -26,11 +24,9 @@ export default {
       },
       validator(value) {
         let notHave = false;
-
         value.forEach(schedule => {
           notHave = scheduleNeedProp.some(prop => !schedule.hasOwnProperty(prop));
         });
-
         return !notHave;
       }
     },
@@ -195,11 +191,9 @@ export default {
     },
     invoke(methodName, ...args) {
       let result;
-
       if (this.calendarInstance[methodName]) {
         result = this.calendarInstance[methodName](...args);
       }
-
       return result;
     }
   }
