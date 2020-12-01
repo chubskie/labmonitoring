@@ -62,6 +62,7 @@ $(function() {
 
 	var modal = '', passwords = {'current':true, 'new':true};
 	$('#accounts').addClass('is-active').removeAttr('href');
+	$('.pageloader .title').text('Loading Accounts');
 
 	$('#add').click(function() {
 		modal = 'add';

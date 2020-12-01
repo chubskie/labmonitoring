@@ -33,10 +33,18 @@
         <th>Name</th>
         <th>Activity</th>
         <th style="width:100px">Laboratory</th>
-        <th style="width:200px">Timestamp</th>
+        <th style="width:200px">Date & Time</th>
       </tr>
     </thead>
     <tbody>
+      <tr id="loading" class="is-hidden">
+        <td colspan="5" class="has-text-centered">
+          <span class="icon">
+            <i class="fas fa-spinner fa-spin"></i>
+          </span>
+          <div>Loading</div>
+        </td>
+      </tr>
       @if (count($logs) > 0)
       @foreach ($logs as $log)
       <tr>

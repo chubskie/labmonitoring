@@ -1,9 +1,5 @@
 @extends('_layout')
 
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/bulma-divider.min.css') }}">
-@endsection
-
 @section('body')
 <div class="level">
 	<div class="level-left">
@@ -22,25 +18,73 @@
 		</div>
 	</div>
 </div>
-
-<div class="container is-fluid">
-	<div class="columns">
-		<div class="column is-4">
-			<a class="box" style="height:200px; border-top:10px solid #f14668">
-				<div class="title has-text-centered is-size-5">Lab 1</div>
-			</a>
-		</div>
-		<div class="column is-4">
-			<a class="box" style="height:200px; border-top:10px solid #48c774">
-				<div class="title has-text-centered is-size-5">Lab 2</div>
-			</a>
-		</div>
-		<div class="column is-4">
-			<a class="box" style="height:200px; border-top:10px solid #48c774">
-				<div class="title has-text-centered is-size-5">Lab 3</div>
-			</a>
+<hr>
+<div id="add-card" class="card mb-3" style="display:none">
+	<header class="card-header">
+		<p class="card-header-title"></p>
+	</header>
+	<div class="card-content">
+		<div class="content">
+			<form action="lab/create" method="POST">
+				@csrf
+				<div class="field is-horizontal">
+					<div class="field-label">
+						<label class="label">Lab Name</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								<input class="input" id="name" type="text" name="name" maxlength="60" required>
+								<div class="help has-text-danger"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="buttons is-centered">
+					<button id="submit" type="submit" class="button is-success">Submit</button>
+					<button id="cancel" class="button is-danger is-outlined" type="button">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
+<div class="container is-fluid">
+	@if (count($labs) > 0)
+	@php
+	$count = 3;
+	@endphp
+	@foreach ($labs as $lab)
+	@if ($count == 3)
+	@php
+	$count = 1;
+	@endphp
+	<div class="columns">
+
+		@else
+		@php
+		$count++;
+		@endphp
+		@endif
+
+		<div class="column is-4">
+			<a class="box" style="height:200px; border-top:10px solid #48c774">
+				<div class="title has-text-centered is-size-5">{{ $lab->labName }}</div>
+			</a>
+		</div>
+
+		@if ($count == 3)
+	</div>
+	@endif
+
+	@endforeach
+	@else
+	<div class="has-text-centered">
+		<span class="icon">
+			<i class="fas fa-info-circle"></i>
+		</span>
+		<span>No Labs Found</span>
+	</div>
+	@endif
 </div>
 @endsection
 

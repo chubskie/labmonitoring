@@ -5,6 +5,7 @@ $(function() {
 		});
 	}
 
+	$('.pageloader .title').text('Loading Login');
 	responseiveUI();
 	$(window).resize(function() {
 		responseiveUI();

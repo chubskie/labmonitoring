@@ -21,7 +21,13 @@ Route::get('freelab', 'IndexController@freelab');
 Route::post('freelab-store', 'IndexController@postfreelab');
 
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('', 'IndexController@dashboard')->name('dashboard');
+	Route::get('', 'LabController@index')->name('dashboard');
+	Route::post('lab/check', 'LabController@create');
+	Route::post('lab/create', 'LabController@store');
+	Route::post('lab/{id}/edit', 'LabController@edit');
+	Route::post('lab/{id}/update', 'LabController@update');
+	Route::post('lab/{id}/remove', 'LabController@destroy');
+
 	Route::get('accounts', 'AccountsController@getAccounts');
 	Route::post('accounts', 'AccountsController@index');
 	Route::post('accounts/addUser', 'AccountsController@store')->name('addUser');
@@ -31,5 +37,5 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('accounts/{id}/delete', 'AccountsController@destroy');
 
 	Route::get('schedules', 'CalendarController@index');
-	Route::get('logs', 'IndexController@logs');
+	Route::any('logs', 'IndexController@logs');
 });

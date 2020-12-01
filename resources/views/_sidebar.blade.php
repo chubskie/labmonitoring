@@ -1,4 +1,4 @@
-<div class="menu has-background-link-light">
+<div id="sidebar" class="menu has-background-link-light">
 	<div class="menu-label">
 		<figure id="avatar" class="image is-64x64">
 			<img src="{{ asset('img/Blank.JPG') }}" class="is-rounded" alt="Profile Picture">

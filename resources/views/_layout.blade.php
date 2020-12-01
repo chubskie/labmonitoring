@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,6 +10,9 @@
 </head>
 
 <body>
+  <div class="pageloader is-bottom-to-top is-info is-active">
+    <div class="title"></div>
+  </div>
   @if (Request::is('freelab') || Request::is('login'))
   @yield('body')
   @else
