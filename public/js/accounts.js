@@ -124,11 +124,11 @@ $(function() {
 	$('.view').click(function() {
 		$(this).parent().prev().find('input').attr('type', $(this).parent().prev().find('input').attr('type') == 'password' ? 'text' : 'password');
 		if ($(this).parent().prev().find('input').attr('type') == 'text') {
-			$(this).removeClass('has-background-grey-light').addClass('has-background-grey-dark');
+			$(this).removeClass('has-background-grey-lighter').addClass('has-background-grey-dark');
 			$(this).find('.icon').addClass('has-text-white');
 			$(this).find('svg').removeClass('fa-eye').addClass('fa-eye-slash');
 		} else {
-			$(this).addClass('has-background-grey-light').removeClass('has-background-grey-dark');
+			$(this).addClass('has-background-grey-lighter').removeClass('has-background-grey-dark');
 			$(this).find('.icon').removeClass('has-text-white');
 			$(this).find('svg').removeClass('fa-eye-slash').addClass('fa-eye');
 		}

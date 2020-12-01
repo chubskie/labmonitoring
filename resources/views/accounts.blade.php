@@ -61,7 +61,7 @@
                 <input class="input" id="password" type="password" name="password" minlength="8" required>
               </div>
               <div class="control">
-                <button class="button has-background-grey-light view" type="button">
+                <button class="button has-background-grey-lighter view" type="button">
                   <span class="icon">
                     <i class="fas fa-eye"></i>
                   </span>
@@ -97,7 +97,7 @@
                 <div id="currenthelp" class="help is-danger"></div>
               </div>
               <div class="control">
-                <button class="button has-background-grey-light view" type="button">
+                <button class="button has-background-grey-lighter view" type="button">
                   <span class="icon">
                     <i class="fas fa-eye"></i>
                   </span>
@@ -117,7 +117,7 @@
                 <div id="newhelp" class="help is-danger"></div>
               </div>
               <div class="control">
-                <button class="button has-background-grey-light view" type="button">
+                <button class="button has-background-grey-lighter view" type="button">
                   <span class="icon">
                     <i class="fas fa-eye"></i>
                   </span>
