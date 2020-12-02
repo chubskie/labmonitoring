@@ -35,7 +35,8 @@
             </header>
             <div class="card-content">
                 <div class="content">
-                    <form id="newSchedule">
+                    <form id="newSchedule" method="POST" action="schedules/store">
+                        <input type="hidden" name="_token" :value="csrf">
                         <div class="field is-horizontal">
                             <div class="field-label is-normal">
                                 <label class="label">Professor</label>
@@ -43,7 +44,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="text"
+                                        <input class="input" type="text" name="professor"
                                             >
                                     </div>
                                     <p class="help is-danger">
@@ -60,7 +61,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="text"
+                                        <input class="input" type="text" name="course"
                                             >
                                     </div>
                                     <p class="help is-danger">
@@ -77,7 +78,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <div class="control">
-                                        <textarea class="textarea" placeholder="Description"></textarea>
+                                        <textarea class="textarea" placeholder="Description" name="description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +109,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="datetime-local" placeholder="Start Date">
+                                        <input class="input" type="datetime-local" placeholder="Start Date" name="start">
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
                                         </span>
@@ -116,7 +117,7 @@
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left ">
-                                        <input class="input" type="datetime-local" placeholder="End Date"
+                                        <input class="input" type="datetime-local" placeholder="End Date" name="end"
                                             >
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-calendar"></i>
@@ -134,7 +135,7 @@
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <label class="checkbox">
-                                            <input type="checkbox" name="allday" id="allday">
+                                            <input type="checkbox" name="isAllDay" id="allday" value="1">
                                             Yes
                                         </label>
                                     </div>
@@ -227,6 +228,7 @@ import {Calendar} from './index';
 import myTheme from './myTheme';
 
 const today = new Date();
+console.log(today);
 const getDate = (type, start, value, operator) => {
   start = new Date(start);
   type = type.charAt(0).toUpperCase() + type.slice(1);
@@ -244,6 +246,7 @@ export default {
   },
   data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       schedules: [],
       viewModeOptions: [
         {
@@ -372,7 +375,8 @@ export default {
     init() {
       this.setRenderRangeText();
     },
-    loadSchedules() {
+
+    loadSchedules() { 
      axios.get('/api/schedules')
      .then((response) => {
        this.schedules = response.data;
@@ -381,17 +385,23 @@ export default {
     for (i = 0; i < this.schedules.length; i++) {   
       let schedule = this.schedules[i];
      
-      this.scheduleList.push({
+      this.scheduleList.push({ 
+
           id: schedule.id,
-          title: schedule.title,
-          category: schedule.category,
-          bgColor: '#f54242',
-          start: schedule.start,
-          end: schedule.end
+          calendarId: '0',
+          title: schedule.professor,
+          category: 'time',
+          isAllDay: schedule.isAllDay,
+          start: new Date(schedule.start).toISOString(),
+          end: new Date(schedule.end).toISOString()
+
           })
       }
      })
+
     },
+
+
     setRenderRangeText() {
       const {invoke} = this.$refs.tuiCal;
       const view = invoke('getViewName');
@@ -456,19 +466,19 @@ export default {
       console.log('Schedule Info : ', res.schedule);
       console.groupEnd();
     },
-    // onClickTimezonesCollapseBtn(timezonesCollapsed) {
-    //   // view : week, day
-    //   console.group('onClickTimezonesCollapseBtn');
-    //   console.log('Is Collapsed Timezone? ', timezonesCollapsed);
-    //   console.groupEnd();
-    //   if (timezonesCollapsed) {
-    //     this.theme['week.timegridLeft.width'] = '100px';
-    //     this.theme['week.daygridLeft.width'] = '100px';
-    //   } else {
-    //     this.theme['week.timegridLeft.width'] = '50px';
-    //     this.theme['week.daygridLeft.width'] = '50px';
-    //   }
-    // }
+    onClickTimezonesCollapseBtn(timezonesCollapsed) {
+      // view : week, day
+      console.group('onClickTimezonesCollapseBtn');
+      console.log('Is Collapsed Timezone? ', timezonesCollapsed);
+      console.groupEnd();
+      if (timezonesCollapsed) {
+        this.theme['week.timegridLeft.width'] = '100px';
+        this.theme['week.daygridLeft.width'] = '100px';
+      } else {
+        this.theme['week.timegridLeft.width'] = '50px';
+        this.theme['week.daygridLeft.width'] = '50px';
+      }
+    }
   },
   mounted() {
     this.init();

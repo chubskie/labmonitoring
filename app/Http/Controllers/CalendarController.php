@@ -16,10 +16,12 @@ class CalendarController extends Controller
         $schedules = Schedule::all();
         return view('calendar')->with('schedules', $schedules);
     }
+
     public function schedules(){ 
         return Schedule::all(); 
     }
 
+      
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +40,25 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'subject' => 'required',
+        //     'message' => 'required'
+        //   ]);
+    
+
+          $sched = new Schedule;
+          $sched->professor = $request->input('professor');
+          $sched->course = $request->input('course');
+          $sched->isAllDay = $request->input('isAllDay');
+          $sched->start = $request->input('start');
+          $sched->end = $request->input('end');
+
+          $sched->save();
+
+          // Redirect
+          return redirect('/schedules')->with('success', 'Message Sent');
     }
 
     /**
