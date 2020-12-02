@@ -25,11 +25,12 @@ class CreateSchedulesTable extends Migration
             $table->string('professor');
             $table->string('course');
             $table->string('category'); // Para saan yung category?
-            $table->string('dueDateClass'); // Para saan yung due date?
+            // $table->string('dueDateClass'); // Para saan yung due date?
             $table->boolean('isReadOnly'); // Para saan yung readonly?
             $table->timestamps();
         });
     }
+
 
         /**
      * Reverse the migrations.
