@@ -37,5 +37,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('accounts/{id}/delete', 'AccountsController@destroy');
 
 	Route::get('schedules', 'CalendarController@index');
+	Route::post('schedules/store', 'CalendarController@store');
+
 	Route::any('logs', 'IndexController@logs');
 });

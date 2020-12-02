@@ -15,18 +15,15 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id(); // id() will automatically create id column with auto-increment and primary key
-            $table->string('start');
-            $table->string('end');
-            $table->boolean('reccuring');
-            $table->dateTime('reccuringEnd');
-            $table->string('color');
-            $table->longText('description');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->boolean('reccuring')->default(0);
+            $table->dateTime('reccuringEnd')->nullable();
+            $table->longText('description')->nullable();
             $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('professor');
-            $table->string('course');
-            $table->string('category'); // Para saan yung category?
-            // $table->string('dueDateClass'); // Para saan yung due date?
-            $table->boolean('isReadOnly'); // Para saan yung readonly?
+            $table->string('professor')->nullable();
+            $table->string('course')->nullable();
+            $table->boolean('isAllDay')->default(0);
             $table->timestamps();
         });
     }

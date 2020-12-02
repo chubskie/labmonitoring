@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Laboratory extends Model
 {
-	protected $fillable = ['labName'];
+	protected $fillable = ['labName', 'color'];
 
 	public function schedule()
 	{
