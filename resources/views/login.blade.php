@@ -5,9 +5,11 @@
 @endsection
 
 @section('body')
-<div class="columns is-centered is-vcentered is-marginless is-mobile">
+<div class="columns is-centered is-vcentered is-marginless is-mobile" style="background-image: url(img/bg.png); background-position: center center; background-attachment: fixed;">
 	<div class="column is-5-tablet is-4-desktop is-3-widescreen">
-		<form class="box">
+		
+		<form class="box is-half" style="width:500px; height: 500px; background-color: #f0fff0;">
+			<h1 class = "title" style="text-align: center;padding-bottom: 60px;">SIGN IN</h1>
 			{{-- <figure class="image mb-4">
 				<img src="{{ asset('img/SyMakerExtended.PNG') }}" alt="SyMaker Logo">
 			</figure> --}}
@@ -19,7 +21,7 @@
 				</div>
 			</div>
 			{{-- Password --}}
-			<div class="field has-addons is-marginless">
+			<div class="field has-addons is-marginless" style="padding-top: 5px">
 				<p id="pass-control" class="control has-icons-left">
 					<input type="password" class="input" placeholder="Password" name="password" required>
 					<span class="icon is-left"><i class="fas fa-key"></i></span>
@@ -28,7 +30,7 @@
 					<button id="view" class="button has-background-grey-lighter" type="button"><span class="icon"><i class="fas fa-eye"></i></span></button>
 				</div>
 			</div>
-			<a class="has-text-right has-text-dark help">Forgot Password?</a>
+			<a class="has-text-right has-text-dark help" style="padding-bottom: 100px ">Forgot Password?</a>
 			{{-- Login --}}
 			<p id="msg" class="help has-text-danger"></p>
 			<div class="field has-text-centered">
