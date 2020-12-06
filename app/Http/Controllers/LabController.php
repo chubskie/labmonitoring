@@ -20,6 +20,12 @@ class LabController extends Controller
     	]);
     }
 
+
+    public function laboratory(){ 
+        return Laboratory::all(); 
+      }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +54,8 @@ class LabController extends Controller
     		return response()->json(['status' => 'error', 'msg' => 'Lab name already exists']);
 
     	$lab = new Laboratory;
-    	$lab->labName = strip_tags($request->name);
+        $lab->labName = strip_tags($request->name);
+        $lab->color = strip_tags($request->color);
     	$lab->save();
 
     	$labs = Laboratory::orderBy('labName', 'asc')->get();

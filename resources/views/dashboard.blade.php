@@ -40,6 +40,19 @@
 						</div>
 					</div>
 				</div>
+				<div class="field is-horizontal">
+					<div class="field-label">
+						<label class="label">Lab Color</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								<input class="input" id="color" type="color" name="color">
+								<div class="help has-text-danger"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="buttons is-centered">
 					<button id="submit" type="submit" class="button is-success">Submit</button>
 					<button id="cancel" class="button is-danger is-outlined" type="button">Cancel</button>

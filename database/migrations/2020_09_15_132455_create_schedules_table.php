@@ -17,13 +17,13 @@ class CreateSchedulesTable extends Migration
             $table->id(); // id() will automatically create id column with auto-increment and primary key
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->boolean('reccuring')->default(0);
+            $table->boolean('reccuring')->default(0)->nullable();
             $table->dateTime('reccuringEnd')->nullable();
             $table->longText('description')->nullable();
             $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('professor')->nullable();
             $table->string('course')->nullable();
-            $table->boolean('isAllDay')->default(0);
+            $table->boolean('isAllDay')->default(0)->nullable();
             $table->timestamps();
         });
     }
