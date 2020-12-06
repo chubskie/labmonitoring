@@ -17,6 +17,11 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('fullName');
             $table->integer('studentNumber');
+            $table->string('course');
+            $table->string('section');
+            $table->string('lab');
+            $table->time('in');
+            $table->time('out');
             $table->timestamps();
         });
     }

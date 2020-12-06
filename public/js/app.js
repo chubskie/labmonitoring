@@ -1978,7 +1978,7 @@ var scheduleNeedProp = ['start', 'category'];
     },
     useCreationPopup: {
       type: Boolean,
-      "default": false
+      "default": true
     },
     useDetailPopup: {
       type: Boolean,
@@ -2000,7 +2000,7 @@ var scheduleNeedProp = ['start', 'category'];
     },
     isReadOnly: {
       type: Boolean,
-      "default": true
+      "default": false
     },
     usageStatistics: {
       type: Boolean,
@@ -2391,7 +2391,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var today = new Date();
-console.log(today);
 
 var getDate = function getDate(type, start, value, operator) {
   start = new Date(start);
@@ -2459,6 +2458,37 @@ var getDate = function getDate(type, start, value, operator) {
         },
         alldayTitle: function alldayTitle() {
           return 'All Day';
+        },
+        //popup template
+        titlePlaceholder: function titlePlaceholder() {
+          return 'Profesor';
+        },
+        locationPlaceholder: function locationPlaceholder() {
+          return 'Course / Subject';
+        },
+        startDatePlaceholder: function startDatePlaceholder() {
+          return 'Start date';
+        },
+        endDatePlaceholder: function endDatePlaceholder() {
+          return 'End date';
+        },
+        popupUpdate: function popupUpdate() {
+          return 'Update';
+        },
+        popupDetailLocation: function popupDetailLocation(schedule) {
+          return '<b>Course / Subject : </b>' + schedule.location;
+        },
+        popupDetailBody: function popupDetailBody(schedule) {
+          return '<b>Description :</b> ' + schedule.body;
+        },
+        popupEdit: function popupEdit() {
+          return 'Edit';
+        },
+        popupDetailState: function popupDetailState(schedule) {
+          return;
+        },
+        popupDelete: function popupDelete() {
+          return 'Delete';
         }
       },
       month: {
@@ -2471,7 +2501,7 @@ var getDate = function getDate(type, start, value, operator) {
       taskView: true,
       scheduleView: true,
       useDetailPopup: true,
-      disableDblClick: true,
+      disableDblClick: false,
       isReadOnly: false
     };
   },
@@ -2522,6 +2552,8 @@ var getDate = function getDate(type, start, value, operator) {
             id: schedule.id,
             calendarId: schedule.labID,
             title: schedule.professor,
+            body: schedule.description,
+            location: schedule.course,
             category: 'time',
             isAllDay: schedule.isAllDay,
             start: new Date(schedule.start).toISOString(),

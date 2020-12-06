@@ -68,7 +68,7 @@ export default {
     },
     useCreationPopup: {
       type: Boolean,
-      default: false
+      default: true
     },
     useDetailPopup: {
       type: Boolean,
@@ -90,7 +90,7 @@ export default {
     },
     isReadOnly: {
       type: Boolean,
-      default: true
+      default: false
     },
     usageStatistics: {
       type: Boolean,

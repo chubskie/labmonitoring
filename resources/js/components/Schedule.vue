@@ -222,7 +222,7 @@ import {Calendar} from './index';
 import myTheme from './myTheme';
 
 const today = new Date();
-console.log(today);
+
 const getDate = (type, start, value, operator) => {
   start = new Date(start);
   type = type.charAt(0).toUpperCase() + type.slice(1);
@@ -289,7 +289,40 @@ export default {
         },
         alldayTitle() {
           return 'All Day';
+        },
+        //popup template
+
+        titlePlaceholder: function() {
+          return 'Profesor';
+        },
+        locationPlaceholder: function() {
+          return 'Course / Subject';
+        },
+        startDatePlaceholder: function() {
+          return 'Start date';
+        },
+        endDatePlaceholder: function() {
+          return 'End date';
+        },
+        popupUpdate: function() {
+          return 'Update';
+        },
+        popupDetailLocation: function(schedule) {
+          return '<b>Course / Subject : </b>' + schedule.location;
+        },
+        popupDetailBody: function(schedule) {
+          return '<b>Description :</b> ' + schedule.body;
+        },
+        popupEdit: function() {
+          return 'Edit';
+        },
+        popupDetailState: function(schedule) {
+           return ;
+        },
+        popupDelete: function() {
+          return 'Delete';
         }
+
       },
       month: {
         startDayOfWeek: 0
@@ -301,7 +334,7 @@ export default {
       taskView: true,
       scheduleView: true,
       useDetailPopup: true,
-      disableDblClick: true,
+      disableDblClick: false,
       isReadOnly: false
     };
   },
@@ -354,6 +387,8 @@ export default {
           id: schedule.id,
           calendarId: schedule.labID,
           title: schedule.professor,
+          body: schedule.description,
+          location: schedule.course,
           category: 'time',
           isAllDay: schedule.isAllDay,
           start: new Date(schedule.start).toISOString(),

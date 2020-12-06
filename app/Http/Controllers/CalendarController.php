@@ -68,8 +68,9 @@ class CalendarController extends Controller
             $sched->professor = $request->input('professor');
             $sched->course = $request->input('course');
             $sched->labID = $request->input('lab');
+            $sched->description = $request->input('description');
             $sched->isAllDay = $request->input('isAllDay');
-            $sched->reccuring = (int) $request->input('reccuring');
+            $sched->reccuring = (int) $request->input('recurring');
             $sched->reccuringEnd = $reccuringEnd;
             $sched->start = $start;
             $sched->end = $end;
@@ -83,8 +84,9 @@ class CalendarController extends Controller
                 $sched->professor = $request->input('professor');
                 $sched->course = $request->input('course');
                 $sched->labID = $request->input('lab');
+                $sched->description = $request->input('description');
                 $sched->isAllDay = $request->input('isAllDay');
-                $sched->reccuring = (int) $request->input('reccuring');
+                $sched->reccuring = (int) $request->input('recurring');
                 $sched->reccuringEnd = $reccuringEnd;
                 $sched->start = $start->addDays(7);
                 $sched->end = $end->addDays(7);
@@ -97,6 +99,7 @@ class CalendarController extends Controller
             $sched->professor = $request->input('professor');
             $sched->course = $request->input('course');
             $sched->labID = $request->input('lab');
+            $sched->description = $request->input('description');
             $sched->isAllDay = $request->input('isAllDay');
             $sched->start = $request->input('start');
             $sched->end = $request->input('end');
@@ -106,7 +109,7 @@ class CalendarController extends Controller
 
 
           // Redirect
-          return redirect('/schedules')->with('success', 'Message Sent');
+          return redirect('/schedules');
     }
 
     /**
