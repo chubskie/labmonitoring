@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Laboratory;
 use App\Log;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
 	public function freelab() {
-		return view('freelab');
+		$labs = Laboratory::all();
+		return view('freelab')->with('labs', $labs);
 	}
 
 	public function postfreelab() {

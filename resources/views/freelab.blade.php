@@ -87,7 +87,9 @@
 						<div class="control">
 							<div class="select">
 								<select id="lab" required>
-									{{-- List options here --}}
+									@foreach($labs as $lab)
+										<option value="{{$lab->labName}}">{{$lab->labName}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
