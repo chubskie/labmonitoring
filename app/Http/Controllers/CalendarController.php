@@ -41,13 +41,13 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
- // $this->validate($request, [
         // $this->validate($request, [
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'subject' => 'required',
-        //     'message' => 'required'
-        //   ]);
+                // $this->validate($request, [
+                //     'name' => 'required',
+                //     'email' => 'required',
+                //     'subject' => 'required',
+                //     'message' => 'required'
+                //   ]);
 
         
 

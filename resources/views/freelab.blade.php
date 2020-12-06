@@ -22,13 +22,13 @@
 				<div class="field-body">
 					<div class="field is-grouped">
 						<div class="control is-expanded">
-							<input type="text" id="lastname" class="input" placeholder="Last Name" required>
+							<input type="text" id="lastname" name="lastname"class="input" placeholder="Last Name" required>
 						</div>
 						<div class="control is-expanded">
-							<input type="text" id="firstname" class="input" placeholder="First Name">
+							<input type="text" id="firstname" name="firstname" class="input" placeholder="First Name">
 						</div>
 						<div class="control" style="width:70px">
-							<input type="text" id="middlename" class="input" placeholder="M.I.">
+							<input type="text" id="middlename" name="mi" class="input" placeholder="M.I.">
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 				<div class="field-body">
 					<div class="field">
 						<div class="control">
-							<input type="number" id="sn" class="input" placeholder="XXXXXXXXXXX" required>
+							<input type="number" id="sn" name="sn" class="input" placeholder="XXXXXXXXXXX" required>
 						</div>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 					<div class="field">
 						<div class="control is-expanded">
 							<div class="select">
-								<select id="course" required>
+								<select id="course" name="course" required>
 									<option value="" selected disabled>Choose Course</option>
 									<option value="BSCS">BSCS</option>
 									<option value="BSIT">BSIT</option>
@@ -73,7 +73,7 @@
 				<div class="field-body">
 					<div class="field">
 						<div class="control">
-							<input type="text" id="section" class="input" required>
+							<input type="text" id="section" name="section" class="input" required>
 						</div>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 					<div class="field">
 						<div class="control">
 							<div class="select">
-								<select id="lab" required>
+								<select id="lab" name="lab" required>
 									@foreach($labs as $lab)
 										<option value="{{$lab->labName}}">{{$lab->labName}}</option>
 									@endforeach
@@ -103,7 +103,7 @@
 				<div class="field-body">
 					<div class="field">
 						<div class="control">
-							<input type="time" id="in" class="input" required>
+							<input type="time" id="in" name="in" class="input" required>
 						</div>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 				<div class="field-body">
 					<div class="field">
 						<div class="control">
-							<input type="time" id="out" class="input" required>
+							<input type="time" id="out" name="out" class="input" required>
 						</div>
 					</div>
 				</div>
