@@ -80,7 +80,11 @@
 		@endif
 
 		<div class="column is-4">
-			<a class="box" style="height:200px; border-top:10px solid #48c774">
+			@if($notAvailable->contains('labID', $lab->id))
+			<a class="box" style="height:200px; border-top:10px solid#ff0000 ">
+			@else
+			<a class="box" style="height:200px; border-top:10px solid #48c774 ">
+			@endif
 				<div class="title has-text-centered is-size-5">{{ $lab->labName }}</div>
 			</a>
 		</div>

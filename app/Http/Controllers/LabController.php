@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Laboratory;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -14,10 +16,18 @@ class LabController extends Controller
      */
     public function index()
     {
+        $dt = Carbon::now();
+		$notAvailable = DB::table('schedules')
+            ->whereRaw('"'.$dt.'" between `start` and `end`')
+            ->get();
+            
     	$labs = Laboratory::orderBy('labName', 'asc')->get();
     	return view('dashboard', [
-    		'labs' => $labs
-    	]);
+            'labs' => $labs,
+            'notAvailable' => $notAvailable
+        ]);
+        
+        // return $notAvailable->pluck('labID');
     }
 
 

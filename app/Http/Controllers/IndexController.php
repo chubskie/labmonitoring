@@ -13,7 +13,6 @@ class IndexController extends Controller
 {
 	public function freelab() {
 
-
 		$dt = Carbon::now();
 		$notAvailable = DB::table('schedules')
 			->whereRaw('"'.$dt.'" between `start` and `end`')
