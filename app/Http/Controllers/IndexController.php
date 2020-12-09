@@ -5,14 +5,23 @@ use App\Laboratory;
 use App\Student;
 use App\Log;
 use Auth;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
 	public function freelab() {
-		// $labs = DB::table('laboratories')->whereBetween('age', [$ageFrom, $ageTo])->get(); 
-		$labs = Laboratory::all();
-		return view('freelab')->with('labs', $labs);
+
+
+		$dt = Carbon::now();
+		$notAvailable = DB::table('schedules')
+			->whereRaw('"'.$dt.'" between `start` and `end`')
+			->get();
+
+		 $labs = Laboratory::whereNotIn('id', $notAvailable->pluck('labID'))->get();
+		 return view('freelab')->with('labs', $labs);
+
 	}
 
 	public function postfreelab(Request $request) {
