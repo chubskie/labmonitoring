@@ -381,7 +381,7 @@ export default {
       scheduleView: true,
       useDetailPopup: true,
       disableDblClick: false,
-      isReadOnly: true
+      isReadOnly: false
     };
   },
   watch: {
@@ -501,13 +501,14 @@ export default {
     },
     
     onBeforeDeleteSchedule(res) {
-      
-      console.group('onBeforeDeleteSchedule');
-      console.log('Schedule Info : ', res.schedule);
-      console.groupEnd();
+      let uri = `/api/schedules/${res.schedule.id}`;
+      axios.delete(uri).then(response => {
       const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
+      console.group('onBeforeDeleteSchedule');
+      console.log('Schedule Infos : ', res.schedule);
+      console.groupEnd(); 
       this.scheduleList.splice(idx, 1);
-      
+      });          
     },
     onAfterRenderSchedule(res) {
       console.group('onAfterRenderSchedule');

@@ -23,6 +23,7 @@ class CreateSchedulesTable extends Migration
             $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('professor')->nullable();
             $table->string('course')->nullable();
+
             $table->boolean('isAllDay')->default(0)->nullable();
             $table->timestamps();
         });

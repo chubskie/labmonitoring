@@ -353,6 +353,8 @@ class CalendarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sched = Schedule::find($id);
+        $sched->delete();
+        return response()->json('Successfully deleted!');
     }
   }
