@@ -12,4 +12,8 @@ class Laboratory extends Model
 	{
 		return $this->hasMany('App\Schedule','labID');
 	}
+	public function log()
+    {
+        return $this->hasMany('App\Log','labID');
+    }
 }

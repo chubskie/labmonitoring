@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use App\Laboratory;
 use App\Student;
 use App\Log;
+use Auth;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
 	public function freelab() {
+		// $labs = DB::table('laboratories')->whereBetween('age', [$ageFrom, $ageTo])->get(); 
 		$labs = Laboratory::all();
 		return view('freelab')->with('labs', $labs);
 	}
@@ -26,6 +28,14 @@ class IndexController extends Controller
 
 		$student->save();
 
+		$logs = new Log;
+		$logs->userID = Auth::id();
+		$logs->studentID = Student::pluck('studentID')->last();
+		$logs->labID = $request->input('lab');
+		$logs->description = "FREE LAB";
+
+		$logs->save();
+
 		return redirect('/freelab');
 	}
 
@@ -34,7 +44,7 @@ class IndexController extends Controller
 		// 	$logs = Log::orderBy('created_at', 'desc')->paginate(50);
 		// 	return response()->json(['logs' => $logs]);
 		// } else {
-		$logs = Log::orderBy('created_at', 'desc')->paginate(50);
+		$logs = Log::with('student','laboratory')->orderBy('created_at', 'desc')->paginate(50);
 		return view('logs', [
 			'logs' => $logs
 		]);

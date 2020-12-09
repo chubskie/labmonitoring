@@ -88,7 +88,7 @@
 							<div class="select">
 								<select id="lab" name="lab" required>
 									@foreach($labs as $lab)
-										<option value="{{$lab->labName}}">{{$lab->labName}}</option>
+										<option value="{{$lab->id}}">{{$lab->labName}}</option>
 									@endforeach
 								</select>
 							</div>

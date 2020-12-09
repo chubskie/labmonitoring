@@ -335,7 +335,7 @@ export default {
       scheduleView: true,
       useDetailPopup: true,
       disableDblClick: false,
-      isReadOnly: false
+      isReadOnly: true
     };
   },
   watch: {
@@ -453,12 +453,15 @@ export default {
       console.log(res.date);
       console.groupEnd();
     },
+    
     onBeforeDeleteSchedule(res) {
+      
       console.group('onBeforeDeleteSchedule');
       console.log('Schedule Info : ', res.schedule);
       console.groupEnd();
       const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
       this.scheduleList.splice(idx, 1);
+      
     },
     onAfterRenderSchedule(res) {
       console.group('onAfterRenderSchedule');

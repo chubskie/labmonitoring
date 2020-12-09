@@ -10,7 +10,7 @@ class Log extends Model
 
 	public function laboratory()
 	{
-		return $this->hasOne('App\Laboratory', 'labID');
+		return $this->belongsTo('App\Laboratory', 'labID');
 	}
 
 	public function user()
@@ -20,6 +20,6 @@ class Log extends Model
 
 	public function student()
 	{
-		return $this->hasOne('App\Student','studentID');
+		return $this->belongsTo('App\Student','studentID');
 	}
 }
