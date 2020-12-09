@@ -82,7 +82,7 @@ class CalendarController extends Controller
         $start_sun = new Carbon($request->input('start'));
         $end_sun = new Carbon($request->input('end'));
 
-
+        $reccuringID = Schedule::pluck('reccuringID')->last();            
         if ($request->input('recurring')  == "1") {
 
             for ($i = 0; $i < $range/7; $i++) {
@@ -96,6 +96,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_mon->startOfWeek()->setTime($start->hour, $start->minute, $start->second);
                         $sched->end = $end_mon->startOfWeek()->setTime($end->hour, $end->minute, $end->second);
@@ -110,6 +111,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_mon->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addWeeks(1);
                     $sched->end = $end_mon->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addWeeks(1);
@@ -126,6 +128,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_tue->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(1);
                         $sched->end = $end_tue->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(1);
@@ -139,6 +142,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_tue->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(1)->addWeeks(1);
                     $sched->end = $end_tue->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(1)->addWeeks(1);
@@ -155,6 +159,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_wed->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(2);
                         $sched->end = $end_wed->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(2);
@@ -168,6 +173,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_wed->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(2)->addWeeks(1);
                     $sched->end = $end_wed->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(2)->addWeeks(1);
@@ -184,6 +190,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_th->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(3);
                         $sched->end = $end_th->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(3);
@@ -197,6 +204,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_th->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(3)->addWeeks(1);
                     $sched->end = $end_th->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(3)->addWeeks(1);
@@ -213,6 +221,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_fri->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(4);
                         $sched->end = $end_fri->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(4);
@@ -226,6 +235,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_fri->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(4)->addWeeks(1);
                     $sched->end = $end_fri->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(4)->addWeeks(1);
@@ -242,6 +252,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_sat->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(5);
                         $sched->end = $end_sat->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(5);
@@ -255,6 +266,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_sat->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(5)->addWeeks(1);
                     $sched->end = $end_sat->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(5)->addWeeks(1);
@@ -271,6 +283,7 @@ class CalendarController extends Controller
                         $sched->description = $request->input('description');
                         $sched->isAllDay = $request->input('isAllDay');
                         $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringID = $reccuringID+1;
                         $sched->reccuringEnd = $reccuringEnd;
                         $sched->start = $start_sun->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(6);
                         $sched->end = $end_sun->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(6);
@@ -284,6 +297,7 @@ class CalendarController extends Controller
                     $sched->description = $request->input('description');
                     $sched->isAllDay = $request->input('isAllDay');
                     $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringID = $reccuringID+1;
                     $sched->reccuringEnd = $reccuringEnd;
                     $sched->start = $start_sun->startOfWeek()->setTime($start->hour, $start->minute, $start->second)->addDays(6)->addWeeks(1);
                     $sched->end = $end_sun->startOfWeek()->setTime($end->hour, $end->minute, $end->second)->addDays(6)->addWeeks(1);
@@ -352,9 +366,12 @@ class CalendarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $sched = Schedule::find($id);
-        $sched->delete();
+    {       
+       // User::whereIn('id', $request->id)->delete();
+
+        $sched = Schedule::where('reccuringID', $id)->delete();
+        // $sched = Schedule::find($id);
+        // $sched->delete();
         return response()->json('Successfully deleted!');
     }
   }

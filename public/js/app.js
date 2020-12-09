@@ -2602,6 +2602,7 @@ var getDate = function getDate(type, start, value, operator) {
             location: schedule.course,
             category: 'time',
             isAllDay: schedule.isAllDay,
+            raw: schedule.reccuringID,
             start: new Date(schedule.start).toISOString(),
             end: new Date(schedule.end).toISOString()
           });
@@ -2665,19 +2666,14 @@ var getDate = function getDate(type, start, value, operator) {
       console.groupEnd();
     },
     onBeforeDeleteSchedule: function onBeforeDeleteSchedule(res) {
-      var _this3 = this;
-
-      var uri = "/api/schedules/".concat(res.schedule.id);
+      var uri = "/api/schedules/".concat(res.schedule.raw);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
-        var idx = _this3.scheduleList.findIndex(function (item) {
-          return item.id === res.schedule.id;
-        });
-
+        // const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
         console.group('onBeforeDeleteSchedule');
         console.log('Schedule Infos : ', res.schedule);
-        console.groupEnd();
+        console.groupEnd(); // this.scheduleList.splice(idx, 1);
 
-        _this3.scheduleList.splice(idx, 1);
+        window.location.reload();
       });
     },
     onAfterRenderSchedule: function onAfterRenderSchedule(res) {

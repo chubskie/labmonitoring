@@ -18,6 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->boolean('reccuring')->default(0)->nullable();
+            $table->integer('reccuringID')->nullable();
             $table->dateTime('reccuringEnd')->nullable();
             $table->longText('description')->nullable();
             $table->foreignId('labID')->constrained('laboratories')->onUpdate('cascade')->onDelete('cascade');

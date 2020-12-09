@@ -437,6 +437,7 @@ export default {
           location: schedule.course,
           category: 'time',
           isAllDay: schedule.isAllDay,
+          raw: schedule.reccuringID,
           start: new Date(schedule.start).toISOString(),
           end: new Date(schedule.end).toISOString()
 
@@ -501,13 +502,14 @@ export default {
     },
     
     onBeforeDeleteSchedule(res) {
-      let uri = `/api/schedules/${res.schedule.id}`;
+      let uri = `/api/schedules/${res.schedule.raw}`;
       axios.delete(uri).then(response => {
-      const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
+      // const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
       console.group('onBeforeDeleteSchedule');
       console.log('Schedule Infos : ', res.schedule);
       console.groupEnd(); 
-      this.scheduleList.splice(idx, 1);
+      // this.scheduleList.splice(idx, 1);
+      window.location.reload();
       });          
     },
     onAfterRenderSchedule(res) {
