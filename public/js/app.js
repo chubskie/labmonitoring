@@ -2383,6 +2383,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46278,7 +46324,9 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(9),
                   _vm._v(" "),
-                  _vm._m(10)
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _vm._m(11)
                 ]
               )
             ])
@@ -46549,7 +46597,133 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "field-label is-normal" }, [
-          _c("label", { staticClass: "label" }, [_vm._v("Recurring Until")])
+          _c("label", { staticClass: "label" }, [_vm._v("Week Days")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field-body" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "field-body" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "control" }, [
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "monday",
+                        id: "monday",
+                        value: "monday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Monday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "tuesday",
+                        id: "tuesday",
+                        value: "tuesday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Tuesday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "wednesday",
+                        id: "wednesday",
+                        value: "wednesday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Wednesday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "thursday",
+                        id: "thursday",
+                        value: "thursday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Thursday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "friday",
+                        id: "friday",
+                        value: "friday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Friday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "saturday",
+                        id: "saturday",
+                        value: "saturday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Saturday\r\n                                          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "checkbox" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        name: "sunday",
+                        id: "sunday",
+                        value: "sunday"
+                      }
+                    }),
+                    _vm._v(
+                      "\r\n                                              Sunday\r\n                                          "
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "field is-horizontal",
+        staticStyle: { display: "none" },
+        attrs: { id: "recurring_form2" }
+      },
+      [
+        _c("div", { staticClass: "field-label is-normal" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Repeat Until")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field-body" }, [

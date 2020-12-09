@@ -61,37 +61,238 @@ class CalendarController extends Controller
 
         $range = (int)$date1->diffInDays($date2);
 
+        $start_mon = new Carbon($request->input('start'));
+        $end_mon = new Carbon($request->input('end'));
+
+        $start_tue = new Carbon($request->input('start'));
+        $end_tue = new Carbon($request->input('end'));
+
+        $start_wed = new Carbon($request->input('start'));
+        $end_wed = new Carbon($request->input('end'));
+
+        $start_th = new Carbon($request->input('start'));
+        $end_th = new Carbon($request->input('end'));
+
+        $start_fri = new Carbon($request->input('start'));
+        $end_fri = new Carbon($request->input('end'));
+        
+        $start_sat = new Carbon($request->input('start'));
+        $end_sat = new Carbon($request->input('end'));
+
+        $start_sun = new Carbon($request->input('start'));
+        $end_sun = new Carbon($request->input('end'));
 
         if ($request->input('recurring')  == "1") {
 
-            $sched = new Schedule;
-            $sched->professor = $request->input('professor');
-            $sched->course = $request->input('course');
-            $sched->labID = $request->input('lab');
-            $sched->description = $request->input('description');
-            $sched->isAllDay = $request->input('isAllDay');
-            $sched->reccuring = (int) $request->input('recurring');
-            $sched->reccuringEnd = $reccuringEnd;
-            $sched->start = $start;
-            $sched->end = $end;
 
-            $sched->save();
 
 
             for ($i = 0; $i < $range/7; $i++) {
-                
-                $sched = new Schedule;
-                $sched->professor = $request->input('professor');
-                $sched->course = $request->input('course');
-                $sched->labID = $request->input('lab');
-                $sched->description = $request->input('description');
-                $sched->isAllDay = $request->input('isAllDay');
-                $sched->reccuring = (int) $request->input('recurring');
-                $sched->reccuringEnd = $reccuringEnd;
-                $sched->start = $start->addDays(7);
-                $sched->end = $end->addDays(7);
 
-                $sched->save();
+                if($request->input('monday')  == "monday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_mon->startOfWeek();
+                        $sched->end = $end_mon->startOfWeek();
+        
+                        $sched->save();
+                    }
+
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_mon->startOfWeek()->addWeeks(1);
+                    $sched->end = $end_mon->startOfWeek()->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('tuesday')  == "tuesday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_tue->startOfWeek()->addDays(1);
+                        $sched->end = $end_tue->startOfWeek()->addDays(1);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_tue->startOfWeek()->addDays(1)->addWeeks(1);
+                    $sched->end = $end_tue->startOfWeek()->addDays(1)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('wednesday')  == "wednesday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_wed->startOfWeek()->addDays(2);
+                        $sched->end = $end_wed->startOfWeek()->addDays(2);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_wed->startOfWeek()->addDays(2)->addWeeks(1);
+                    $sched->end = $end_wed->startOfWeek()->addDays(2)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('thursday')  == "thursday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_th->startOfWeek()->addDays(3);
+                        $sched->end = $end_th->startOfWeek()->addDays(3);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_th->startOfWeek()->addDays(3)->addWeeks(1);
+                    $sched->end = $end_th->startOfWeek()->addDays(3)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('friday')  == "friday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_fri->startOfWeek()->addDays(4);
+                        $sched->end = $end_fri->startOfWeek()->addDays(4);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_fri->startOfWeek()->addDays(4)->addWeeks(1);
+                    $sched->end = $end_fri->startOfWeek()->addDays(4)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('saturday')  == "saturday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_sat->startOfWeek()->addDays(5);
+                        $sched->end = $end_sat->startOfWeek()->addDays(5);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_sat->startOfWeek()->addDays(5)->addWeeks(1);
+                    $sched->end = $end_sat->startOfWeek()->addDays(5)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
+                if($request->input('sunday')  == "sunday"){
+                    if($i == 0){
+                        $sched = new Schedule;
+                        $sched->professor = $request->input('professor');
+                        $sched->course = $request->input('course');
+                        $sched->labID = $request->input('lab');
+                        $sched->description = $request->input('description');
+                        $sched->isAllDay = $request->input('isAllDay');
+                        $sched->reccuring = (int) $request->input('recurring');
+                        $sched->reccuringEnd = $reccuringEnd;
+                        $sched->start = $start_sun->startOfWeek()->addDays(6);
+                        $sched->end = $end_sun->startOfWeek()->addDays(6);
+        
+                        $sched->save();
+                    }
+                    $sched = new Schedule;
+                    $sched->professor = $request->input('professor');
+                    $sched->course = $request->input('course');
+                    $sched->labID = $request->input('lab');
+                    $sched->description = $request->input('description');
+                    $sched->isAllDay = $request->input('isAllDay');
+                    $sched->reccuring = (int) $request->input('recurring');
+                    $sched->reccuringEnd = $reccuringEnd;
+                    $sched->start = $start_sun->startOfWeek()->addDays(6)->addWeeks(1);
+                    $sched->end = $end_sun->startOfWeek()->addDays(6)->addWeeks(1);
+    
+                    $sched->save();
+                }
+
                 }
                     
         } else {

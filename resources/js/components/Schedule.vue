@@ -162,7 +162,53 @@
 
                          <div class="field is-horizontal" id="recurring_form" style="display:none">
                             <div class="field-label is-normal">
-                                <label class="label">Recurring Until</label>
+                                <label class="label">Week Days</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                  <div class="field-body">
+                                      <div class="field">
+                                          <div class="control">
+                                              
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="monday" id="monday" value="monday">
+                                              Monday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="tuesday" id="tuesday" value="tuesday">
+                                              Tuesday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="wednesday" id="wednesday" value="wednesday">
+                                              Wednesday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="thursday" id="thursday" value="thursday">
+                                              Thursday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="friday" id="friday" value="friday">
+                                              Friday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="saturday" id="saturday" value="saturday">
+                                              Saturday
+                                          </label>
+                                          <label class="checkbox">
+                                              <input type="checkbox" name="sunday" id="sunday" value="sunday">
+                                              Sunday
+                                          </label>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal" id="recurring_form2" style="display:none">
+                            <div class="field-label is-normal">
+                                <label class="label">Repeat Until</label>
                             </div>
                             <div class="field-body">
                                 <div class="field">

@@ -30,6 +30,9 @@ $(function() {
   $('#recurring').click(function() {
     $("#recurring_form").toggle(this.checked);
   });
+  $('#recurring').click(function() {
+    $("#recurring_form2").toggle(this.checked);
+  });
 
 
 });
