@@ -2676,6 +2676,16 @@ var getDate = function getDate(type, start, value, operator) {
         window.location.reload();
       });
     },
+    onBeforeUpdateSchedule: function onBeforeUpdateSchedule(res) {// let uri = `/api/schedules/${res.schedule.raw}`;
+      // axios.delete(uri).then(response => {
+      // // const idx = this.scheduleList.findIndex(item => item.id === res.schedule.id);
+      // console.group('onBeforeDeleteSchedule');
+      // console.log('Schedule Infos : ', res.schedule);
+      // console.groupEnd(); 
+      // // this.scheduleList.splice(idx, 1);
+      // window.location.reload();
+      // });          
+    },
     onAfterRenderSchedule: function onAfterRenderSchedule(res) {
       console.group('onAfterRenderSchedule');
       console.log('Schedule Info : ', res.schedule);
