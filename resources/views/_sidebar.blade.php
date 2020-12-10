@@ -3,7 +3,7 @@
 		<figure id="avatar" class="image is-64x64">
 			<img src="{{ asset('img/Blank.JPG') }}" class="is-rounded" alt="Profile Picture">
 		</figure>
-		<span class="is-size-5 has-text">{{Auth::user()->name}}</span>
+		<span class="is-size-5 has-text">{{Auth::user()->username}}</span>
 	</div>
 	<ul class="menu-list">
 		<li>
